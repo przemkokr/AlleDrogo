@@ -10,7 +10,7 @@ namespace AlleDrogo.Domain.Entities.Item
 
         public string Description { get; protected set; }
 
-        public decimal BasePrice { get; protected set; }
+        public decimal BasePrice { get; protected set; }                
 
         public decimal CurrentPrice { get; protected set; }
 
