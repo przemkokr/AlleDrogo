@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -24,7 +24,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <None Remove="ClientApp\src\app\auctions\auctions.component.ts" />
+    <None Remove="ClientApp\src\app\filter-component\filters.component.ts" />
+    <None Remove="ClientApp\src\app\login-page\login-page.component.ts" />
+    <None Remove="ClientApp\src\app\models\auction-model.ts" />
+    <None Remove="ClientApp\src\app\models\item-model.ts" />
+    <None Remove="ClientApp\src\app\models\test-data-model.ts" />
+    <None Remove="ClientApp\src\app\services\auctionService.ts" />
+    <None Remove="ClientApp\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ClientApp\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\src\app\auctions\auctions.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\filter-component\filters.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\login-page\login-page.component.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\auction-model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\item-model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\models\test-data-model.ts" />
+    <TypeScriptCompile Include="ClientApp\src\app\services\auctionService.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">
