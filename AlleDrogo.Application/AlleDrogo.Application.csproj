@@ -7,6 +7,16 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="11.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Command\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AlleDrogo.Domain\AlleDrogo.Domain.csproj" />
+    <ProjectReference Include="..\AlleDrogo.Internal.Contracts\AlleDrogo.Internal.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
