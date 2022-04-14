@@ -1,5 +1,7 @@
 ﻿using AlleDrogo.Domain.Entities.Base;
+using AlleDrogo.Domain.Entities.Bids;
 using System;
+using System.Collections.Generic;
 
 namespace AlleDrogo.Domain.Entities.Auction
 {
@@ -8,12 +10,12 @@ namespace AlleDrogo.Domain.Entities.Auction
         protected Auction() { }
 
         public Auction(
-            string title, 
-            AuctionItem item, 
-            DateTime startDate, 
-            DateTime endDate, 
-            string description, 
-            decimal currentValue, 
+            string title,
+            AuctionItem item,
+            DateTime startDate,
+            DateTime endDate,
+            string description,
+            decimal currentValue,
             bool isBuyNow)
         {
             Title = title;
@@ -41,9 +43,17 @@ namespace AlleDrogo.Domain.Entities.Auction
 
         public decimal? BuyNowValue { get; protected set; }
 
+        public ICollection<Bid> Bids { get; protected set; }
+
         public void SetBuyNowValue(decimal buyNowValue)
         {
             BuyNowValue = buyNowValue;
+        }
+
+        public void AddBid(Bid bid)
+        {
+            Bids.Add(bid);
+            CurrentValue = bid.BidAmount;
         }
     }
 }
