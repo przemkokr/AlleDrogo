@@ -31,6 +31,7 @@ namespace AlleDrogo.Application.Query.Auctions
                     DateTime.Now.AddDays(7),
                     "Przedmiotem aukcji jest stary gruz opel astra",
                     2000m,
+                    false,
                     false),
                 new Auction("Buty Nike",
                     new AuctionItem("Nike AirMax 44", Category.FASHION, "Bardzo ładne nowe buty", true),
@@ -38,14 +39,16 @@ namespace AlleDrogo.Application.Query.Auctions
                     DateTime.Now.AddDays(7),
                     "Mam do sprzedania buty",
                     199m,
-                    true),                
+                    true,
+                    false),                
                 new Auction("Laptop ASUS",
                     new AuctionItem("Laptop ASUS X54H", Category.ELECTRONICS, "8 Giga RAM, Grafika pięćset, dysk tysiąc", true),                                       
                     DateTime.Now,
                     DateTime.Now.AddDays(10),
                     "Super laptop dla graczy",
                     1488m,                    
-                    true)                
+                    true,
+                    false)                
             };
 
             return auctions;

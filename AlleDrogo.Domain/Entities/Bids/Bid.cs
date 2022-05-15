@@ -7,17 +7,17 @@ namespace AlleDrogo.Domain.Entities.Bids
     {
         protected Bid() { }
 
-        public Bid(Auction.Auction auction, int userId, decimal bidAmount, DateTime biddingTime)
+        public Bid(Auction.Auction auction, User.User user, decimal bidAmount, DateTime biddingTime)
         {
             Auction = auction;
-            UserId = userId;
+            User = user;
             BidAmount = bidAmount;
             BiddingTime = biddingTime;
         }
 
         public Auction.Auction Auction { get; protected set; }
 
-        public int UserId { get; protected set; }
+        public User.User User { get; protected set; }
 
         public decimal BidAmount { get; protected set; }
 
