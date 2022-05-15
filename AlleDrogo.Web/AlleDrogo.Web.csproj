@@ -48,6 +48,11 @@
     <None Remove="ClientApp\src\app\models\item-model.ts" />
     <None Remove="ClientApp\src\app\models\test-data-model.ts" />
     <None Remove="ClientApp\src\app\services\auctionService.ts" />
+    <None Remove="ClientApp\tsconfig.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="ClientApp\tsconfig.json" />
   </ItemGroup>
 
   <ItemGroup>
