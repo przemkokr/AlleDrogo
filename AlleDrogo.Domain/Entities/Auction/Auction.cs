@@ -16,7 +16,8 @@ namespace AlleDrogo.Domain.Entities.Auction
             DateTime endDate,
             string description,
             decimal currentValue,
-            bool isBuyNow)
+            bool isBuyNow,
+            bool isSold)
         {
             Title = title;
             Item = item;
@@ -25,6 +26,7 @@ namespace AlleDrogo.Domain.Entities.Auction
             Description = description;
             CurrentValue = currentValue;
             IsBuyNow = isBuyNow;
+            IsSold = isSold;
         }
 
         public string Title { get; protected set; }
@@ -41,6 +43,8 @@ namespace AlleDrogo.Domain.Entities.Auction
 
         public bool IsBuyNow { get; protected set; }
 
+        public bool IsSold { get; protected set; }
+
         public decimal? BuyNowValue { get; protected set; }
 
         public ICollection<Bid> Bids { get; protected set; }
@@ -54,6 +58,11 @@ namespace AlleDrogo.Domain.Entities.Auction
         {
             Bids.Add(bid);
             CurrentValue = bid.BidAmount;
+        }
+
+        public void SetSold()
+        {
+            IsSold = true;
         }
     }
 }

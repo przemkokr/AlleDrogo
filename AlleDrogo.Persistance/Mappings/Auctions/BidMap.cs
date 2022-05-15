@@ -9,6 +9,7 @@ namespace AlleDrogo.Persistance.Mappings.Auctions
         {
             builder.HasKey(b => b.Id);
             builder.HasOne(b => b.Auction).WithMany(a => a.Bids);
+            builder.HasOne(b => b.User);
         }
     }
 }
