@@ -1,12 +1,12 @@
+using AlleDrogo.Domain.Entities.AppUser;
 using Microsoft.AspNetCore.Authorization;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
-using AlleDrogo.Domain.Entities.AppUser;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace AlleDrogo.Web.Areas.Identity.Pages.Account
 {

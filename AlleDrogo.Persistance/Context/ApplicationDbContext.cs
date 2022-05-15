@@ -23,7 +23,7 @@ namespace AlleDrogo.Persistance.Context
 
         public DbSet<ItemPhoto> ItemPhotos { get; set; }
 
-        public DbSet<Bid> Bids { get; set; } 
+        public DbSet<Bid> Bids { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

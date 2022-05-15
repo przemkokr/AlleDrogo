@@ -1,10 +1,8 @@
-﻿using AlleDrogo.Domain.Entities.AppUser;
-using AlleDrogo.Domain.Entities.Auction;
+﻿using AlleDrogo.Domain.Entities.Auction;
 using AlleDrogo.Infrastructure.Identity;
 using AlleDrogo.Internal.Contracts.Query;
 using AlleDrogo.Persistance.Repository;
 using MediatR;
-using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -49,15 +47,15 @@ namespace AlleDrogo.Application.Query.Auctions
                     "Mam do sprzedania buty",
                     199m,
                     true,
-                    false),                
+                    false),
                 new Auction("Laptop ASUS",
-                    new AuctionItem("Laptop ASUS X54H", Category.ELECTRONICS, "8 Giga RAM, Grafika pięćset, dysk tysiąc", true),                                       
+                    new AuctionItem("Laptop ASUS X54H", Category.ELECTRONICS, "8 Giga RAM, Grafika pięćset, dysk tysiąc", true),
                     DateTime.Now,
                     DateTime.Now.AddDays(10),
                     "Super laptop dla graczy",
-                    1488m,                    
+                    1488m,
                     true,
-                    false)                
+                    false)
             };
 
             return auctions;

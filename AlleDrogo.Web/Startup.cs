@@ -1,21 +1,20 @@
 using AlleDrogo.Application.Query.Auctions;
+using AlleDrogo.Domain.Entities.AppUser;
+using AlleDrogo.Infrastructure.Identity;
+using AlleDrogo.Infrastructure.MediatR;
+using AlleDrogo.Persistance.Context;
+using AlleDrogo.Persistance.Repository;
+using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using MediatR;
-using AlleDrogo.Persistance.Repository;
 using System.Reflection;
-using AlleDrogo.Infrastructure.MediatR;
-using AlleDrogo.Persistance.Context;
-using AlleDrogo.Domain.Entities.AppUser;
-using AlleDrogo.Infrastructure.Identity;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace AlleDrogo.Web
 {
