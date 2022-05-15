@@ -13,6 +13,9 @@ using System.Reflection;
 using AlleDrogo.Infrastructure.MediatR;
 using AlleDrogo.Persistance.Context;
 using AlleDrogo.Domain.Entities.AppUser;
+using AlleDrogo.Infrastructure.Identity;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 
 namespace AlleDrogo.Web
 {
@@ -30,6 +33,7 @@ namespace AlleDrogo.Web
         {
 
             services.AddMediatR(typeof(Startup));
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
             services.AddMediatorHandlers(typeof(GetAuctionsQueryHandler).GetTypeInfo().Assembly);
 
@@ -39,6 +43,7 @@ namespace AlleDrogo.Web
             });
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<IUserService, UserService>();
 
             services.AddControllers();
 

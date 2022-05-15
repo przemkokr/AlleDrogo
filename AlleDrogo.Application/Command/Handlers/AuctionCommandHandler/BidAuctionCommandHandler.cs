@@ -1,7 +1,7 @@
 ﻿using AlleDrogo.Application.Command.AuctionCommand;
 using AlleDrogo.Domain.Entities.Auction;
 using AlleDrogo.Domain.Entities.Bids;
-using AlleDrogo.Domain.Entities.User;
+using AlleDrogo.Infrastructure.Identity;
 using AlleDrogo.Persistance.Repository;
 using MediatR;
 using System.ComponentModel.DataAnnotations;
@@ -13,19 +13,17 @@ namespace AlleDrogo.Application.Command.Handlers.AuctionCommandHandler
     internal class BidAuctionCommandHandler : IRequestHandler<BidAuctionCommand>
     {
         private readonly IRepository<Bid> bidRepository;
-
         private readonly IRepository<Auction> auctionRepository;
+        private readonly IUserService userService;
 
-        private readonly IRepository<User> userRepository;
-
-        public BidAuctionCommandHandler(IRepository<Bid> bidRepository, IRepository<Auction> auctionRepository, IRepository<User> userRepository)
+        public BidAuctionCommandHandler(IRepository<Bid> bidRepository, IRepository<Auction> auctionRepository, IUserService userService)
         {
             this.bidRepository = bidRepository;
             this.auctionRepository = auctionRepository;
-            this.userRepository = userRepository;
+            this.userService = userService;
         }
 
-        Task<Unit> IRequestHandler<BidAuctionCommand, Unit>.Handle(BidAuctionCommand request, CancellationToken cancellationToken)
+        public async Task<Unit> Handle(BidAuctionCommand request, CancellationToken cancellationToken)
         {
             var auction = auctionRepository.GetById(request.AuctionId);
             if (auction == null)
@@ -33,7 +31,7 @@ namespace AlleDrogo.Application.Command.Handlers.AuctionCommandHandler
                 throw new ValidationException("Auction not found!");
             }
 
-            var user = userRepository.GetById(request.UserId);
+            var user = await this.userService.GetUser(request.Username);
             if (user == null)
             {
                 throw new ValidationException("User not found!");
@@ -58,7 +56,8 @@ namespace AlleDrogo.Application.Command.Handlers.AuctionCommandHandler
             {
                 AddBid(auction, bid);
             }
-            return Task.FromResult(Unit.Value);
+
+            return Unit.Value;
         }
 
         private void BuyNow(Auction auction)

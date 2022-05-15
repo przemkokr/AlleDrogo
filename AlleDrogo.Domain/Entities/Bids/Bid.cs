@@ -1,4 +1,5 @@
-﻿using AlleDrogo.Domain.Entities.Base;
+﻿using AlleDrogo.Domain.Entities.AppUser;
+using AlleDrogo.Domain.Entities.Base;
 using System;
 
 namespace AlleDrogo.Domain.Entities.Bids
@@ -7,7 +8,7 @@ namespace AlleDrogo.Domain.Entities.Bids
     {
         protected Bid() { }
 
-        public Bid(Auction.Auction auction, User.User user, decimal bidAmount, DateTime biddingTime)
+        public Bid(Auction.Auction auction, ApplicationUser user, decimal bidAmount, DateTime biddingTime)
         {
             Auction = auction;
             User = user;
@@ -17,7 +18,7 @@ namespace AlleDrogo.Domain.Entities.Bids
 
         public Auction.Auction Auction { get; protected set; }
 
-        public User.User User { get; protected set; }
+        public ApplicationUser User { get; protected set; }
 
         public decimal BidAmount { get; protected set; }
 

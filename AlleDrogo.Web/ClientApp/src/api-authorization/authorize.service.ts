@@ -191,9 +191,11 @@ export class AuthorizeService {
   }
 
   private getUserFromStorage(): Observable<IUser> {
-    return from(this.ensureUserManagerInitialized())
+    let user = from(this.ensureUserManagerInitialized())
       .pipe(
         mergeMap(() => this.userManager.getUser()),
         map(u => u && u.profile));
+
+    return user;
   }
 }
