@@ -20,7 +20,7 @@ export class Auctions {
       this.auctions = auctions;
       this.allItems = auctions.length;
     }, error => {
-      console.log('Something went wrong');
+      console.log('Something went wrong.');
     })
   }
 }
