@@ -1,5 +1,4 @@
 ﻿using AlleDrogo.Domain.Entities.Auction;
-using AlleDrogo.Infrastructure.Identity;
 using AlleDrogo.Internal.Contracts.Query;
 using AlleDrogo.Persistance.Repository;
 using MediatR;
