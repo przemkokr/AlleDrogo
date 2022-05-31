@@ -1,5 +1,7 @@
 using AlleDrogo.Application.Query.Auctions;
 using AlleDrogo.Domain.Entities.AppUser;
+using AlleDrogo.Domain.Entities.Auction;
+using AlleDrogo.Infrastructure.DatabaseInitializer;
 using AlleDrogo.Infrastructure.Identity;
 using AlleDrogo.Infrastructure.MediatR;
 using AlleDrogo.Persistance.Context;
@@ -66,7 +68,7 @@ namespace AlleDrogo.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IRepository<Auction> repository)
         {
             if (env.IsDevelopment())
             {
@@ -112,6 +114,9 @@ namespace AlleDrogo.Web
                     spa.UseAngularCliServer(npmScript: "start");
                 }
             });
+
+            var initializer = new DatabaseInitializer(repository);
+            initializer.Initialize();
         }
     }
 }

@@ -43,6 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ClientApp\src\app\auctions\auction-detail.component.ts" />
     <None Remove="ClientApp\src\app\auctions\auctions.component.ts" />
     <None Remove="ClientApp\src\app\filter-component\filters.component.ts" />
     <None Remove="ClientApp\src\app\models\auction-model.ts" />

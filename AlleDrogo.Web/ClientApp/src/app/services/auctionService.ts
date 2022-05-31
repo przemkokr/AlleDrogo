@@ -22,4 +22,8 @@ export class AuctionService {
   public getAuctions() {
     return this.httpClient.get<Auction[]>(this.apiUrl + '/get-all');
   }
+
+  public getAuction(id: number) {
+    return this.httpClient.get<Auction>(this.apiUrl + '/get-by-id/' + id);
+  }
 }

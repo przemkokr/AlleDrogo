@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\AlleDrogo.Internal.Contracts\AlleDrogo.Internal.Contracts.csproj" />
+    <ProjectReference Include="..\AlleDrogo.Persistance\AlleDrogo.Persistance.csproj" />
   </ItemGroup>
 
 </Project>

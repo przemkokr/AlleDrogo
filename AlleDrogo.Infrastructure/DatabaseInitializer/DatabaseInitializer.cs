@@ -1,32 +1,22 @@
 ﻿using AlleDrogo.Domain.Entities.Auction;
-using AlleDrogo.Infrastructure.Identity;
-using AlleDrogo.Internal.Contracts.Query;
 using AlleDrogo.Persistance.Repository;
-using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Linq;
 
-namespace AlleDrogo.Application.Query.Auctions
+namespace AlleDrogo.Infrastructure.DatabaseInitializer
 {
-    public class GetAuctionsQueryHandler : IRequestHandler<GetAuctionsQuery, IEnumerable<Auction>>
+    public class DatabaseInitializer
     {
-        private readonly IRepository<Auction> auctionRepository;
-        private readonly IRepository<AuctionItem> auctionItemRepository;
-        private readonly IUserService userService;
 
-        public GetAuctionsQueryHandler(IRepository<Auction> auctionRepository, IRepository<AuctionItem> auctionItemRepository, IUserService userService)
+        private readonly IRepository<Auction> repository;
+
+        public DatabaseInitializer(IRepository<Auction> repository)
         {
-            this.auctionRepository = auctionRepository;
-            this.auctionItemRepository = auctionItemRepository;
-            this.userService = userService;
+            this.repository = repository;
         }
 
-        public async Task<IEnumerable<Auction>> Handle(GetAuctionsQuery request, CancellationToken cancellationToken)
+        public void Initialize()
         {
-            await Task.CompletedTask;
-
             var auctions = new Auction[]
             {
                 new Auction("Opel Astra III zadbany",
@@ -55,7 +45,16 @@ namespace AlleDrogo.Application.Query.Auctions
                     false)
             };
 
-            return auctions;
+            var existingAuctions = this.repository.GetAll();
+            if (existingAuctions.Count() < 3)
+            {
+                foreach (var auction in auctions)
+                {
+                    this.repository.Add(auction);
+                }
+
+                this.repository.SaveChanges();
+            }
         }
     }
 }
