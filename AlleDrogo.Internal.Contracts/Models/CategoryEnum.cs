@@ -1,6 +1,6 @@
 ﻿namespace AlleDrogo.Internal.Contracts.Models
 {
-    public enum CategoryModel
+    public enum CategoryEnum
     {
         CARS,
         FASHION,

@@ -1,4 +1,4 @@
-﻿namespace AlleDrogo.Domain.Entities.Auction
+﻿namespace AlleDrogo.Domain.Entities.Auctions
 {
     public enum Category
     {

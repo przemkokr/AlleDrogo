@@ -1,7 +1,7 @@
-﻿using AlleDrogo.Application.Command.AuctionCommand;
-using AlleDrogo.Domain.Entities.Auction;
+﻿using AlleDrogo.Domain.Entities.Auctions;
 using AlleDrogo.Domain.Entities.Bids;
-using AlleDrogo.Persistance;
+using AlleDrogo.Infrastructure.Identity;
+using AlleDrogo.Internal.Contracts.Command;
 using AlleDrogo.Persistance.Repository;
 using MediatR;
 using System.ComponentModel.DataAnnotations;

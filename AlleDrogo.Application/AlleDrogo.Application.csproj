@@ -5,11 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="10.0.1" />
+    <Compile Remove="Query\Commands\**" />
+    <EmbeddedResource Remove="Query\Commands\**" />
+    <None Remove="Query\Commands\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Query\Commands\NewFolder\" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
   </ItemGroup>
 
   <ItemGroup>

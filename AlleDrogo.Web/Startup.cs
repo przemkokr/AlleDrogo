@@ -1,6 +1,6 @@
-using AlleDrogo.Application.Query.Auctions;
+using AlleDrogo.Application.Query.Handlers.Auctions;
 using AlleDrogo.Domain.Entities.AppUser;
-using AlleDrogo.Domain.Entities.Auction;
+using AlleDrogo.Domain.Entities.Auctions;
 using AlleDrogo.Infrastructure.DatabaseInitializer;
 using AlleDrogo.Infrastructure.Identity;
 using AlleDrogo.Infrastructure.MediatR;

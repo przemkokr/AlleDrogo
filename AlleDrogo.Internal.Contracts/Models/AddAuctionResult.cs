@@ -1,4 +1,4 @@
-﻿namespace AlleDrogo.Application.Command.Commands.AuctionCommand
+﻿namespace AlleDrogo.Internal.Contracts.Models
 {
     public class AddAuctionResult
     {

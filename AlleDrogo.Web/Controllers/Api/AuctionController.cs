@@ -1,5 +1,5 @@
-﻿using AlleDrogo.Domain.Entities.Auction;
-using AlleDrogo.Internal.Contracts.Query;
+﻿using AlleDrogo.Domain.Entities.Auctions;
+using AlleDrogo.Internal.Contracts.Query.Auctions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;

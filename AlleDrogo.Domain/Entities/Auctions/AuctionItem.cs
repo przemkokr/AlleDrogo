@@ -1,7 +1,7 @@
 ﻿using AlleDrogo.Domain.Entities.Base;
 using System.Collections.Generic;
 
-namespace AlleDrogo.Domain.Entities.Auction
+namespace AlleDrogo.Domain.Entities.Auctions
 {
     public class AuctionItem : EntityBase
     {

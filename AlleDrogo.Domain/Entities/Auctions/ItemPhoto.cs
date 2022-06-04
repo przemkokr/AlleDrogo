@@ -1,6 +1,6 @@
 ﻿using AlleDrogo.Domain.Entities.Base;
 
-namespace AlleDrogo.Domain.Entities.Auction
+namespace AlleDrogo.Domain.Entities.Auctions
 {
     public class ItemPhoto : EntityBase
     {

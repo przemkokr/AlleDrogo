@@ -2,7 +2,7 @@
 using MediatR;
 using System;
 
-namespace AlleDrogo.Application.Command.Commands.AuctionCommand
+namespace AlleDrogo.Internal.Contracts.Command
 {
     public class AddAuctionCommand : IRequest<AddAuctionResult>
     {

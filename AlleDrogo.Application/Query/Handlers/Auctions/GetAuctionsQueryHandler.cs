@@ -1,5 +1,5 @@
-﻿using AlleDrogo.Domain.Entities.Auction;
-using AlleDrogo.Internal.Contracts.Query;
+﻿using AlleDrogo.Domain.Entities.Auctions;
+using AlleDrogo.Internal.Contracts.Query.Auctions;
 using AlleDrogo.Persistance.Repository;
 using MediatR;
 using System;
@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AlleDrogo.Application.Query.Auctions
+namespace AlleDrogo.Application.Query.Handlers.Auctions
 {
     public class GetAuctionsQueryHandler : IRequestHandler<GetAuctionsQuery, IEnumerable<Auction>>
     {
@@ -24,7 +24,7 @@ namespace AlleDrogo.Application.Query.Auctions
         {
             await Task.CompletedTask;
 
-            var auctions = this.auctionRepository.GetAll();
+            var auctions = auctionRepository.GetAll();
 
             var result = auctions.Where(a => a.EndDate > DateTime.Now).ToList();
 

@@ -1,5 +1,5 @@
 ﻿using AlleDrogo.Domain.Entities.AppUser;
-using AlleDrogo.Domain.Entities.Auction;
+using AlleDrogo.Domain.Entities.Auctions;
 using AlleDrogo.Persistance.Repository;
 using System;
 using System.Linq;

@@ -1,9 +1,8 @@
-﻿using AlleDrogo.Domain.Entities.AppUser;
-using AlleDrogo.Domain.Entities.Auction;
+﻿using AlleDrogo.Domain.Entities.Auctions;
 using MediatR;
 using System.Collections.Generic;
 
-namespace AlleDrogo.Application.Query.Queries.AuctionQueries
+namespace AlleDrogo.Internal.Contracts.Query.Auctions
 {
     public class GetActiveAuctionsByUserQuery : IRequest<IEnumerable<Auction>>
     {

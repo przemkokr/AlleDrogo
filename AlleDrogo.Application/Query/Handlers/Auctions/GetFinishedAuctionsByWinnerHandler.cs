@@ -1,6 +1,6 @@
-﻿using AlleDrogo.Application.Query.Queries.AuctionQueries;
-using AlleDrogo.Domain.Entities.Auction;
-using AlleDrogo.Persistance;
+﻿using AlleDrogo.Domain.Entities.Auctions;
+using AlleDrogo.Infrastructure.Identity;
+using AlleDrogo.Internal.Contracts.Query.Auctions;
 using AlleDrogo.Persistance.Repository;
 using MediatR;
 using System;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AlleDrogo.Application.Query.Handlers.AuctionQueriesHandlers
+namespace AlleDrogo.Application.Query.Handlers.Auctions
 {
     public class GetFinishedAuctionsByWinnerHandler : IRequestHandler<GetFinishedAuctionsByWinner, IEnumerable<Auction>>
     {
@@ -19,8 +19,8 @@ namespace AlleDrogo.Application.Query.Handlers.AuctionQueriesHandlers
 
         public GetFinishedAuctionsByWinnerHandler(IRepository<Auction> auctionRepository, IUserService userService)
         {
-            this._auctionRepository = auctionRepository;
-            this._userService = userService;
+            _auctionRepository = auctionRepository;
+            _userService = userService;
         }
         public async Task<IEnumerable<Auction>> Handle(GetFinishedAuctionsByWinner request, CancellationToken cancellationToken)
         {
@@ -34,11 +34,11 @@ namespace AlleDrogo.Application.Query.Handlers.AuctionQueriesHandlers
 
             foreach (var auction in auctions)
             {
-                if(auction.Winner.Id == user.Id)
+                if (auction.Winner?.Id == user.Id)
                 {
                     auctionsWonByUser.Add(auction);
                 }
-                
+
 
             }
 

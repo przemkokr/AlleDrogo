@@ -4,7 +4,7 @@ using AlleDrogo.Domain.Entities.Bids;
 using System;
 using System.Collections.Generic;
 
-namespace AlleDrogo.Domain.Entities.Auction
+namespace AlleDrogo.Domain.Entities.Auctions
 {
     public class Auction : EntityBase
     {
@@ -38,7 +38,7 @@ namespace AlleDrogo.Domain.Entities.Auction
 
         public ApplicationUser User { get; protected set; }
 
-        public ApplicationUser? Winner { get; protected set; }
+        public ApplicationUser Winner { get; protected set; }
 
         public DateTime StartDate { get; protected set; }
 

@@ -1,7 +1,7 @@
 ﻿using AlleDrogo.Domain.Entities.AppUser;
 using System.Threading.Tasks;
 
-namespace AlleDrogo.Persistance
+namespace AlleDrogo.Infrastructure.Identity
 {
     public interface IUserService
     {

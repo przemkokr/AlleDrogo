@@ -1,5 +1,5 @@
 ﻿using AlleDrogo.Domain.Entities.AppUser;
-using AlleDrogo.Domain.Entities.Auction;
+using AlleDrogo.Domain.Entities.Auctions;
 using AlleDrogo.Domain.Entities.Bids;
 using AlleDrogo.Persistance.Mappings.Auctions;
 using IdentityServer4.EntityFramework.Options;

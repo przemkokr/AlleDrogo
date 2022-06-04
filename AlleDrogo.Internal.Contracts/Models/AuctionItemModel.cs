@@ -1,10 +1,8 @@
-﻿using AlleDrogo.Domain.Entities.Auction;
-
-namespace AlleDrogo.Internal.Contracts.Models
+﻿namespace AlleDrogo.Internal.Contracts.Models
 {
     public class AuctionItemModel
     {
-        public AuctionItemModel(string name, CategoryModel category, string description)
+        public AuctionItemModel(string name, CategoryEnum category, string description)
         {
             Name = name;
             Description = description;
@@ -15,7 +13,7 @@ namespace AlleDrogo.Internal.Contracts.Models
 
         public string Description { get; protected set; }
 
-        public CategoryModel Category { get; protected set; }
+        public CategoryEnum Category { get; protected set; }
 
 
     }

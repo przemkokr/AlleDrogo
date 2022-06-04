@@ -1,5 +1,5 @@
-﻿using AlleDrogo.Application.Command.Commands.AuctionCommand;
-using AlleDrogo.Domain.Entities.Auction;
+﻿using AlleDrogo.Domain.Entities.Auctions;
+using AlleDrogo.Infrastructure.Identity;
 using AlleDrogo.Internal.Contracts.Models;
 using AlleDrogo.Persistance;
 using AlleDrogo.Persistance.Repository;
@@ -26,16 +26,16 @@ namespace AlleDrogo.Internal.Contracts.Command
 
         public async Task<AddAuctionResult> Handle(AddAuctionCommand request, CancellationToken cancellationToken)
         {
-            var auctionItem = AddAuctionItem(request.Item);
+            var auctionItem = await AddAuctionItem(request.Item);
             var auction = await AddAuction(request, auctionItem);
             return new AddAuctionResult { Id = auction.Id };
         }
 
-        private AuctionItem AddAuctionItem(AuctionItemModel item)
+        private async Task<AuctionItem> AddAuctionItem(AuctionItemModel item)
         {
             var auctionItem = new AuctionItem(
                 item.Name,
-                ResolveCategory(item.Category),
+                await ResolveCategory(item.Category),
                 item.Description,
                 true
                 );
@@ -45,21 +45,23 @@ namespace AlleDrogo.Internal.Contracts.Command
             return auctionItem;
         }
 
-        private static Category ResolveCategory(CategoryModel category)
+        private async Task<Category> ResolveCategory(CategoryEnum category)
         {
+            await Task.CompletedTask;
+
             return category switch
             {
-                CategoryModel.CARS => Category.CARS,
-                CategoryModel.FASHION => Category.FASHION,
-                CategoryModel.ELECTRONICS => Category.ELECTRONICS,
-                CategoryModel.PLANTS => Category.PLANTS,
-                CategoryModel.SERVICES => Category.SERVICES,
-                CategoryModel.GAMES => Category.GAMES,
-                CategoryModel.DRUGS => Category.DRUGS,
-                CategoryModel.FURNITURE => Category.FURNITURE,
-                CategoryModel.CULTURE => Category.CULTURE,
-                CategoryModel.BEAUTY => Category.BEAUTY,
-                CategoryModel.BRIBES_FOR_GOOD_GRADES_FOR_THE_DEVELOPMENT_TEAM => Category.BRIBES_FOR_GOOD_GRADES_FOR_THE_DEVELOPMENT_TEAM,
+                CategoryEnum.CARS => Category.CARS,
+                CategoryEnum.FASHION => Category.FASHION,
+                CategoryEnum.ELECTRONICS => Category.ELECTRONICS,
+                CategoryEnum.PLANTS => Category.PLANTS,
+                CategoryEnum.SERVICES => Category.SERVICES,
+                CategoryEnum.GAMES => Category.GAMES,
+                CategoryEnum.DRUGS => Category.DRUGS,
+                CategoryEnum.FURNITURE => Category.FURNITURE,
+                CategoryEnum.CULTURE => Category.CULTURE,
+                CategoryEnum.BEAUTY => Category.BEAUTY,
+                CategoryEnum.BRIBES_FOR_GOOD_GRADES_FOR_THE_DEVELOPMENT_TEAM => Category.BRIBES_FOR_GOOD_GRADES_FOR_THE_DEVELOPMENT_TEAM,
                 _ => throw new ValidationException("Nieobsługiwana kategoria!")
             };
         }

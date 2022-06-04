@@ -1,4 +1,4 @@
-﻿using AlleDrogo.Domain.Entities.Auction;
+﻿using AlleDrogo.Domain.Entities.Auctions;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace AlleDrogo.Persistance.Mappings.Auctions

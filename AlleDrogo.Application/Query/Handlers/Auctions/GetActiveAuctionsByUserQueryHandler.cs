@@ -1,7 +1,6 @@
-﻿using AlleDrogo.Application.Query.Queries.AuctionQueries;
-using AlleDrogo.Domain.Entities.Auction;
+﻿using AlleDrogo.Domain.Entities.Auctions;
 using AlleDrogo.Infrastructure.Identity;
-using AlleDrogo.Persistance;
+using AlleDrogo.Internal.Contracts.Query.Auctions;
 using AlleDrogo.Persistance.Repository;
 using MediatR;
 using System;
@@ -11,7 +10,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AlleDrogo.Application.Query.Handlers.AuctionQueriesHandlers
+namespace AlleDrogo.Application.Query.Handlers.Auctions
 {
     public class GetActiveAuctionsByUserQueryHandler : IRequestHandler<GetActiveAuctionsByUserQuery, IEnumerable<Auction>>
     {
@@ -20,7 +19,7 @@ namespace AlleDrogo.Application.Query.Handlers.AuctionQueriesHandlers
 
         public GetActiveAuctionsByUserQueryHandler(IRepository<Auction> auctionRepository, IUserService userService)
         {
-            this._auctionRepository = auctionRepository;
+            _auctionRepository = auctionRepository;
             this.userService = userService;
         }
 
@@ -38,9 +37,9 @@ namespace AlleDrogo.Application.Query.Handlers.AuctionQueriesHandlers
             foreach (var auction in auctions)
             {
                 var bids = auction.Bids;
-                foreach(var bid in bids)
+                foreach (var bid in bids)
                 {
-                    if(bid.User.Id == user.Id)
+                    if (bid.User.Id == user.Id)
                     {
                         usersAuctions.Add(auction);
                     }
