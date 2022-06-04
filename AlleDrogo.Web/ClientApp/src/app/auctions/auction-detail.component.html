@@ -8,6 +8,39 @@
           {{auction.description}}
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-12">
+          <hr />
+          <h6>
+            Przedmiot aukcji
+          </h6>
+          <div>{{auction.item.name}}</div>
+          <div>{{auction.item.description}}</div>
+          <h5 class="text text-success">Aktualna cena: {{auction.currentValue}} zł</h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <hr />
+          <h6>
+            Przebieg aukcji
+          </h6>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Wartość</th>
+                <th>Data</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let bid of auction.bids">
+                <td>{{bid.bidAmount}} zł</td>
+                <td>{{bid.biddingTime | date: 'short'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
     <div class="col-lg-5" *ngIf="(isAuthenticated | async)">
       <div *ngIf="(auction.isBuyNow && auction.isBuyNow == true)">

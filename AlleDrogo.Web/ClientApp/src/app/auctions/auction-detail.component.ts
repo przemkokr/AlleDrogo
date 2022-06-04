@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { ToastrService } from "ngx-toastr";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { AuthorizeService } from "../../api-authorization/authorize.service";
@@ -28,7 +29,8 @@ export class AuctionDetail implements OnInit {
     private readonly auctionService: AuctionService,
     private readonly bidService: BidService,
     private route: ActivatedRoute,
-    private authorizeService: AuthorizeService) { }
+    private authorizeService: AuthorizeService,
+    private toastr: ToastrService) { }
 
   addBid = () => {
     this.isAddingBid = !this.isAddingBid;
@@ -43,7 +45,8 @@ export class AuctionDetail implements OnInit {
     command.bidAmount = bidValue;
 
     this.bidService.bid(command).subscribe((status) => {
-      alert("Hmm, everything is fine?" + status)
+      this.toastr.success("Zalicytowałeś!")
+      this.refresh();
     }, (error) => {
       alert("Error" + error)}
     );
@@ -53,11 +56,7 @@ export class AuctionDetail implements OnInit {
     this.sub = this.route.params.subscribe(params => {
       this.id = +params['id'];
 
-      this.auctionService.getAuction(this.id).subscribe(auction => {
-        this.auction = auction;
-      }, error => {
-        console.log('Something went wrong.');
-      })
+      this.refresh();
 
       this.isAuthenticated = this.authorizeService.isAuthenticated();
       this.userName = this.authorizeService.getUser().pipe(map(u => u && u.name));
@@ -66,4 +65,12 @@ export class AuctionDetail implements OnInit {
       })
     });
   };
+
+  refresh = () => {
+    this.auctionService.getAuction(this.id).subscribe(auction => {
+      this.auction = auction;
+    }, error => {
+      console.log('Something went wrong.');
+    })
+  }
 }

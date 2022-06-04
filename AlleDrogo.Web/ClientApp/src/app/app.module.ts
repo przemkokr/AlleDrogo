@@ -14,6 +14,9 @@ import { Filters } from './filter-component/filters.component';
 import { Auctions } from './auctions/auctions.component';
 import { AuctionDetail } from './auctions/auction-detail.component';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +28,7 @@ import { AuctionDetail } from './auctions/auction-detail.component';
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
+    BrowserAnimationsModule,
     HttpClientModule,
     FormsModule,
     ApiAuthorizationModule,
@@ -32,7 +36,8 @@ import { AuctionDetail } from './auctions/auction-detail.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'auction/:id', component: AuctionDetail, pathMatch: 'full' },
       // { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
-    ])
+    ]),
+    ToastrModule.forRoot()
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
