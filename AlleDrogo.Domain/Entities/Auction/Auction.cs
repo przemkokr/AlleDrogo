@@ -38,7 +38,7 @@ namespace AlleDrogo.Domain.Entities.Auction
 
         public ApplicationUser User { get; protected set; }
 
-        public ApplicationUser? Winner { get; protected set; }
+        public ApplicationUser Winner { get; protected set; }
 
         public DateTime StartDate { get; protected set; }
 
