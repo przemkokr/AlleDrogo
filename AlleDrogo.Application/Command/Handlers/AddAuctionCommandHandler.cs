@@ -1,7 +1,7 @@
 ﻿using AlleDrogo.Domain.Entities.Auctions;
 using AlleDrogo.Infrastructure.Identity;
+using AlleDrogo.Internal.Contracts.Command;
 using AlleDrogo.Internal.Contracts.Models;
-using AlleDrogo.Persistance;
 using AlleDrogo.Persistance.Repository;
 using MediatR;
 using System;
@@ -9,7 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AlleDrogo.Internal.Contracts.Command
+namespace AlleDrogo.Application.Command.Handlers
 {
     internal class AddAuctionCommandHandler : IRequestHandler<AddAuctionCommand, AddAuctionResult>
     {

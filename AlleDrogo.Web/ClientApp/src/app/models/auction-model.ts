@@ -8,5 +8,5 @@ export interface Auction {
   description: string;
   currentValue: number;
   isBuyNow: boolean;
-  buyNowValue: boolean;
+  buyNowValue: number;
 }

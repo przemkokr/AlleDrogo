@@ -30,7 +30,7 @@ import { AuctionDetail } from './auctions/auction-detail.component';
     ApiAuthorizationModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'auction/:id', component: AuctionDetail, pathMatch: 'full', canActivate: [AuthorizeGuard] },
+      { path: 'auction/:id', component: AuctionDetail, pathMatch: 'full' },
       // { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
     ])
   ],

@@ -48,8 +48,10 @@
     <None Remove="ClientApp\src\app\auctions\auctions.component.ts" />
     <None Remove="ClientApp\src\app\filter-component\filters.component.ts" />
     <None Remove="ClientApp\src\app\models\auction-model.ts" />
+    <None Remove="ClientApp\src\app\models\bid-command.ts" />
     <None Remove="ClientApp\src\app\models\item-model.ts" />
     <None Remove="ClientApp\src\app\services\auctionService.ts" />
+    <None Remove="ClientApp\src\app\services\BidService.ts" />
     <None Remove="ClientApp\tsconfig.json" />
   </ItemGroup>
 

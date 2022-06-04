@@ -4,7 +4,9 @@ import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { AuthorizeService } from "../../api-authorization/authorize.service";
 import { Auction } from "../models/auction-model";
+import { BidCommand } from "../models/bid-command";
 import { AuctionService } from "../services/auctionService";
+import { BidService } from "../services/BidService";
 
 @Component({
   selector: 'auction-detail',
@@ -15,6 +17,8 @@ export class AuctionDetail implements OnInit {
   auction: Auction = null;
   id: number;
   private sub: any;
+  isAddingBid: boolean = false;
+  bidValue: number;
 
   public isAuthenticated: Observable<boolean>;
   public userName: Observable<string>;
@@ -22,9 +26,28 @@ export class AuctionDetail implements OnInit {
 
   constructor(
     private readonly auctionService: AuctionService,
+    private readonly bidService: BidService,
     private route: ActivatedRoute,
     private authorizeService: AuthorizeService) { }
 
+  addBid = () => {
+    this.isAddingBid = !this.isAddingBid;
+  }
+
+  bid = (value: string) => {
+    let bidValue = +value;
+    let command = new BidCommand;
+    command.auctionId = this.id;
+    command.username = this.loggedUser;
+    command.biddingTime = new Date();
+    command.bidAmount = bidValue;
+
+    this.bidService.bid(command).subscribe((status) => {
+      alert("Hmm, everything is fine?" + status)
+    }, (error) => {
+      alert("Error" + error)}
+    );
+  }
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {

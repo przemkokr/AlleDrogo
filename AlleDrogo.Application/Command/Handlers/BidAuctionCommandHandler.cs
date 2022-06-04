@@ -8,9 +8,9 @@ using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AlleDrogo.Application.Command.Handlers.AuctionCommandHandler
+namespace AlleDrogo.Application.Command.Handlers
 {
-    internal class BidAuctionCommandHandler : IRequestHandler<BidAuctionCommand>
+    public class BidAuctionCommandHandler : IRequestHandler<BidAuctionCommand>
     {
         private readonly IRepository<Bid> bidRepository;
         private readonly IRepository<Auction> auctionRepository;
