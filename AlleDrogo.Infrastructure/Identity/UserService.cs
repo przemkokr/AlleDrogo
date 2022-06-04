@@ -1,4 +1,5 @@
 ﻿using AlleDrogo.Domain.Entities.AppUser;
+using AlleDrogo.Persistance;
 using Microsoft.AspNetCore.Identity;
 using System.Threading.Tasks;
 
