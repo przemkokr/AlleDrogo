@@ -29,7 +29,7 @@ namespace AlleDrogo.Web.Controllers.Api
         }
 
         [HttpGet]
-        [Route("get-by-id")]
+        [Route("get-by-id/{id:int}")]
         public async Task<Auction> GetAuction(int id)
         {
             var auctions = await mediator.Send(new GetAuctionsQuery());

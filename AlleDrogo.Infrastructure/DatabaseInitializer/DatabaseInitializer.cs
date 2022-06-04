@@ -18,9 +18,24 @@ namespace AlleDrogo.Infrastructure.DatabaseInitializer
 
         public void Initialize()
         {
-            var auctions = new Auction[]
+            ClearItems();
+            CreateItems();
+        }
+
+        private void ClearItems()
+        {
+            var auctions = repository.GetAll();
+            foreach (var item in auctions)
             {
-                new Auction("Opel Astra III zadbany",
+                repository.Delete(item);
+            }
+
+            repository.SaveChanges();
+        }
+
+        private void CreateItems()
+        {
+            var auction1 = new Auction("Opel Astra III zadbany",
                     new AuctionItem("Opel Astra III 1.5 LPG", Category.CARS, "Zadbany opelek prosto od handlarza", false),
                     new ApplicationUser { UserName = "Tom Gruz", Email = "tom.gruz@null.exception"},
                     DateTime.Now,
@@ -28,8 +43,8 @@ namespace AlleDrogo.Infrastructure.DatabaseInitializer
                     "Przedmiotem aukcji jest stary gruz opel astra",
                     2000m,
                     false,
-                    false),
-                new Auction("Buty Nike",
+                    false);
+            var auction2 = new Auction("Buty Nike",
                     new AuctionItem("Nike AirMax 44", Category.FASHION, "Bardzo ładne nowe buty", true),
                     new ApplicationUser { UserName = "Anna Wanna", Email = "wannaanna2@gmail.com"},
                     DateTime.Now,
@@ -37,8 +52,10 @@ namespace AlleDrogo.Infrastructure.DatabaseInitializer
                     "Mam do sprzedania buty",
                     199m,
                     true,
-                    false),
-                new Auction("Laptop ASUS",
+                    false);
+            auction2.SetBuyNowValue(249m);
+
+            var auction3 = new Auction("Laptop ASUS",
                     new AuctionItem("Laptop ASUS X54H", Category.ELECTRONICS, "8 Giga RAM, Grafika pięćset, dysk tysiąc", true),
                     new ApplicationUser { UserName = "Sam Drabulok", Email = "sandra.bullock@gmail.com"},
                     DateTime.Now,
@@ -46,7 +63,12 @@ namespace AlleDrogo.Infrastructure.DatabaseInitializer
                     "Super laptop dla graczy",
                     1488m,
                     true,
-                    false)
+                    false);
+            auction3.SetBuyNowValue(1800m);
+
+            var auctions = new Auction[]
+            {
+                auction1, auction2, auction3
             };
 
             var existingAuctions = this.repository.GetAll();
