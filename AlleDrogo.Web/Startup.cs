@@ -4,6 +4,7 @@ using AlleDrogo.Domain.Entities.Auction;
 using AlleDrogo.Infrastructure.DatabaseInitializer;
 using AlleDrogo.Infrastructure.Identity;
 using AlleDrogo.Infrastructure.MediatR;
+using AlleDrogo.Persistance;
 using AlleDrogo.Persistance.Context;
 using AlleDrogo.Persistance.Repository;
 using MediatR;
