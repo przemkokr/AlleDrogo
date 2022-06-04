@@ -73,9 +73,6 @@ namespace AlleDrogo.Application.Command.Handlers
         {
             auction.AddBid(bid);
             auctionRepository.SaveChanges();
-
-            bidRepository.Add(bid);
-            bidRepository.SaveChanges();
         }
     }
 }
