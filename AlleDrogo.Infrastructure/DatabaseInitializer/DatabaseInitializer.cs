@@ -1,6 +1,8 @@
 ﻿using AlleDrogo.Domain.Entities.AppUser;
 using AlleDrogo.Domain.Entities.Auctions;
+using AlleDrogo.Infrastructure.Identity;
 using AlleDrogo.Persistance.Repository;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Linq;
 
@@ -10,16 +12,83 @@ namespace AlleDrogo.Infrastructure.DatabaseInitializer
     {
 
         private readonly IRepository<Auction> repository;
+        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly IUserService userService;
 
-        public DatabaseInitializer(IRepository<Auction> repository)
+        public DatabaseInitializer(
+            IRepository<Auction> repository, 
+            RoleManager<IdentityRole> roleManager, 
+            UserManager<ApplicationUser> userManager,
+            IUserService userService)
         {
             this.repository = repository;
+            this.roleManager = roleManager;
+            this.userManager = userManager;
+            this.userService = userService;
         }
 
         public void Initialize()
         {
+            PrepareUsersIfNeeded(roleManager, userManager);
             ClearItems();
             CreateItems();
+        }
+
+        private void PrepareUsersIfNeeded(RoleManager<IdentityRole> roleManager, UserManager<ApplicationUser> userManager)
+        {
+            SeedRoles(roleManager);
+            SeedUsers(userManager);
+        }
+
+        private void SeedUsers(UserManager<ApplicationUser> userManager)
+        {
+            var user1 = new ApplicationUser
+            {
+                UserName = InitializerConstants.FirstUserData,
+                Email = InitializerConstants.FirstUserData,
+                EmailConfirmed = true
+            };
+
+            var result = userManager.CreateAsync(user1, "Password1!").Result;
+            if (result.Succeeded)
+            {
+                userManager.AddToRoleAsync(user1, "AppUser").Wait();
+            }
+
+            var user2 = new ApplicationUser
+            {
+                UserName = InitializerConstants.SecondUserData,
+                Email = InitializerConstants.SecondUserData,
+                EmailConfirmed = true
+            };
+
+            var result2 = userManager.CreateAsync(user2, "Password1!").Result;
+            if (result2.Succeeded)
+            {
+                userManager.AddToRoleAsync(user2, "AppUser").Wait();
+            }
+        }
+
+        private void SeedRoles(RoleManager<IdentityRole> roleManager)
+        {
+            if (!roleManager.RoleExistsAsync("Administrator").Result)
+            {
+                var role = new IdentityRole
+                {
+                    Name = "Administrator"
+                };
+                var result = roleManager.CreateAsync(role).Result;
+            }
+
+            if (!roleManager.RoleExistsAsync("AppUser").Result)
+            {
+                var role = new IdentityRole
+                {
+                    Name = "AppUser"
+                };
+                var result = roleManager.CreateAsync(role).Result;
+            }
         }
 
         private void ClearItems()
@@ -37,7 +106,7 @@ namespace AlleDrogo.Infrastructure.DatabaseInitializer
         {
             var auction1 = new Auction("Opel Astra III zadbany",
                     new AuctionItem("Opel Astra III 1.5 LPG", Category.CARS, "Zadbany opelek prosto od handlarza", false),
-                    new ApplicationUser { UserName = "Tom Gruz", Email = "tom.gruz@null.exception"},
+                    userService.GetUser(InitializerConstants.FirstUserData).GetAwaiter().GetResult(),
                     DateTime.Now,
                     DateTime.Now.AddDays(7),
                     "Przedmiotem aukcji jest stary gruz opel astra",
@@ -46,7 +115,7 @@ namespace AlleDrogo.Infrastructure.DatabaseInitializer
                     false);
             var auction2 = new Auction("Buty Nike",
                     new AuctionItem("Nike AirMax 44", Category.FASHION, "Bardzo ładne nowe buty", true),
-                    new ApplicationUser { UserName = "Anna Wanna", Email = "wannaanna2@gmail.com"},
+                    userService.GetUser(InitializerConstants.FirstUserData).GetAwaiter().GetResult(),
                     DateTime.Now,
                     DateTime.Now.AddDays(7),
                     "Mam do sprzedania buty",
@@ -57,7 +126,7 @@ namespace AlleDrogo.Infrastructure.DatabaseInitializer
 
             var auction3 = new Auction("Laptop ASUS",
                     new AuctionItem("Laptop ASUS X54H", Category.ELECTRONICS, "8 Giga RAM, Grafika pięćset, dysk tysiąc", true),
-                    new ApplicationUser { UserName = "Sam Drabulok", Email = "sandra.bullock@gmail.com"},
+                    userService.GetUser(InitializerConstants.SecondUserData).GetAwaiter().GetResult(),
                     DateTime.Now,
                     DateTime.Now.AddDays(10),
                     "Super laptop dla graczy",

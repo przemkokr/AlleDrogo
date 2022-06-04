@@ -4,7 +4,6 @@ using AlleDrogo.Domain.Entities.Auctions;
 using AlleDrogo.Infrastructure.DatabaseInitializer;
 using AlleDrogo.Infrastructure.Identity;
 using AlleDrogo.Infrastructure.MediatR;
-using AlleDrogo.Persistance;
 using AlleDrogo.Persistance.Context;
 using AlleDrogo.Persistance.Repository;
 using MediatR;
@@ -12,6 +11,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -51,8 +51,13 @@ namespace AlleDrogo.Web
 
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddDefaultUI()
+                .AddEntityFrameworkStores<ApplicationDbContext>()
+                .AddDefaultTokenProviders();
+
+            //services.AddDefaultIdentity<ApplicationUser>(options => options.SignIn.RequireConfirmedAccount = false)
+            //    .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddIdentityServer()
                 .AddApiAuthorization<ApplicationUser, ApplicationDbContext>();
@@ -74,7 +79,13 @@ namespace AlleDrogo.Web
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IRepository<Auction> repository)
+        public void Configure(
+            IApplicationBuilder app, 
+            IWebHostEnvironment env, 
+            IRepository<Auction> repository,
+            UserManager<ApplicationUser> userManager, 
+            RoleManager<IdentityRole> roleManager,
+            IUserService userService)
         {
             if (env.IsDevelopment())
             {
@@ -121,7 +132,7 @@ namespace AlleDrogo.Web
                 }
             });
 
-            var initializer = new DatabaseInitializer(repository);
+            var initializer = new DatabaseInitializer(repository, roleManager, userManager, userService);
             initializer.Initialize();
         }
     }
