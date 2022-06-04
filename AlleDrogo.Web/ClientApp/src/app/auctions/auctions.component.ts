@@ -3,8 +3,8 @@ import { Auction } from '../models/auction-model';
 import { AuctionService } from '../services/auctionService';
 
 @Component({
-  selector: "auctions",
-  templateUrl: "auctions.component.html"
+  selector: 'auctions',
+  templateUrl: './auctions.component.html'
 })
 
 export class Auctions {

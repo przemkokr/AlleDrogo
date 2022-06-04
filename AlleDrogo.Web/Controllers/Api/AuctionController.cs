@@ -3,6 +3,7 @@ using AlleDrogo.Internal.Contracts.Query;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace AlleDrogo.Web.Controllers.Api
@@ -25,6 +26,15 @@ namespace AlleDrogo.Web.Controllers.Api
             var auctions = await mediator.Send(new GetAuctionsQuery());
 
             return auctions;
+        }
+
+        [HttpGet]
+        [Route("get-by-id")]
+        public async Task<Auction> GetAuction(int id)
+        {
+            var auctions = await mediator.Send(new GetAuctionsQuery());
+
+            return auctions.FirstOrDefault(a => a.Id == id);
         }
     }
 }

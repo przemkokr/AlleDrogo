@@ -12,6 +12,7 @@ import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { Filters } from './filter-component/filters.component';
 import { Auctions } from './auctions/auctions.component';
+import { AuctionDetail } from './auctions/auction-detail.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { Auctions } from './auctions/auctions.component';
     NavMenuComponent,
     HomeComponent,
     Filters,
-    Auctions
+    Auctions,
+    AuctionDetail
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -28,6 +30,7 @@ import { Auctions } from './auctions/auctions.component';
     ApiAuthorizationModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'auction/:id', component: AuctionDetail, pathMatch: 'full' },
       // { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
     ])
   ],
