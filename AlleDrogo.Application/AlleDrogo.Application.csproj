@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Command\" />
+    <Folder Include="Query\Commands\NewFolder\" />
   </ItemGroup>
 
   <ItemGroup>

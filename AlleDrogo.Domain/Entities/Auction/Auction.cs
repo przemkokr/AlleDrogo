@@ -1,4 +1,5 @@
-﻿using AlleDrogo.Domain.Entities.Base;
+﻿using AlleDrogo.Domain.Entities.AppUser;
+using AlleDrogo.Domain.Entities.Base;
 using AlleDrogo.Domain.Entities.Bids;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace AlleDrogo.Domain.Entities.Auction
         public Auction(
             string title,
             AuctionItem item,
+            ApplicationUser user,
             DateTime startDate,
             DateTime endDate,
             string description,
@@ -21,6 +23,7 @@ namespace AlleDrogo.Domain.Entities.Auction
         {
             Title = title;
             Item = item;
+            User = user;
             StartDate = startDate;
             EndDate = endDate;
             Description = description;
@@ -32,6 +35,8 @@ namespace AlleDrogo.Domain.Entities.Auction
         public string Title { get; protected set; }
 
         public AuctionItem Item { get; protected set; }
+
+        public ApplicationUser User { get; protected set; }
 
         public DateTime StartDate { get; protected set; }
 
