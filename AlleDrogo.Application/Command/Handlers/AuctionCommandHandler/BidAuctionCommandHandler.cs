@@ -50,10 +50,12 @@ namespace AlleDrogo.Application.Command.Handlers.AuctionCommandHandler
             }
             else if (bid.BidAmount >= auction.BuyNowValue)
             {
+                auction.SetWinner(user);
                 BuyNow(auction);
             }
             else
             {
+                auction.SetWinner(user);
                 AddBid(auction, bid);
             }
 
@@ -63,6 +65,7 @@ namespace AlleDrogo.Application.Command.Handlers.AuctionCommandHandler
         private void BuyNow(Auction auction)
         {
             auction.SetSold();
+
             auctionRepository.SaveChanges();
         }
 

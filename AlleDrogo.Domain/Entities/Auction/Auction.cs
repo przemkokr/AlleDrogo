@@ -38,6 +38,8 @@ namespace AlleDrogo.Domain.Entities.Auction
 
         public ApplicationUser User { get; protected set; }
 
+        public ApplicationUser? Winner { get; protected set; }
+
         public DateTime StartDate { get; protected set; }
 
         public DateTime EndDate { get; protected set; }
@@ -57,6 +59,11 @@ namespace AlleDrogo.Domain.Entities.Auction
         public void SetBuyNowValue(decimal buyNowValue)
         {
             BuyNowValue = buyNowValue;
+        }
+
+        public void SetWinner(ApplicationUser winner)
+        {
+            Winner = winner;
         }
 
         public void AddBid(Bid bid)
