@@ -20,11 +20,12 @@
         [ngClass]="{ show: isExpanded }"
       >
         <ul class="navbar-nav flex-grow">
-          <li
-            class="nav-item"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >            
+          <li class="nav-item"
+              [routerLinkActive]="['link-active']"
+              [routerLinkActiveOptions]="{ exact: true }">
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="(isAuthenticated | async)">
+            <a class="nav-link text-dark" [routerLink]="['/create']">Nowa aukcja</a>
           </li>
         </ul>
         <app-login-menu></app-login-menu>

@@ -1,0 +1,62 @@
+<div class="container">  
+  <div class="row">
+    <div class="col-md-6">
+      <h4 class="text text-success">Nowa aukcja</h4>
+      <div class="form-group">
+        <label for="title">Tytuł</label>
+        <input #auctionTitle type="text" id="#auctionTitle" class="form-control" placeholder="Nazwa aukcji" (change)="onTitleChanged(auctionTitle.value)" />
+      </div>
+      <div class="form-group">
+        <label for="description">Opis</label>
+        <textarea #auctionDescription rows="5" id="Description" class="form-control" placeholder="Krótki opis" (change)="onAuctionDescriptionChanged(auctionDescription.value)"></textarea>
+      </div>
+      <div class="form-group">
+        <label for="initialValue">Wartość początkowa</label>
+        <input #initialValue type="number" id="initialValue" class="form-control" (change)="onInitialValueChanged(initialValue.value)" />
+      </div>
+      <div class="form-inline">
+        <div>Czy <strong>Kup Teraz   </strong><input #isBuyNowCheckbox type="checkbox" id="#isBuyNowCheckbox" class="form-control" [checked]="isBuyNow" (change)="onIsBuyNowChanged(isBuyNowCheckbox.checked)" /></div>
+      </div>
+      <div class="form-group" *ngIf="isBuyNow">
+        <label for="buyNow">Wartość dla <strong>Kup Teraz</strong></label>
+        <input #buyNowValue type="number" id="buyNow" class="form-control" (change)="onBuyNowChanged(buyNowValue.value)" />
+      </div>
+      <div class="form-group">
+        <label for="endDate">Data zakończenia: </label>
+        <input #endDate type="date" name="endDate" class="form-control" (change)="onEndDateChanged(endDate.value)" />
+        <small class="form-text text-muted" *ngIf="!isDateValid()">Data zakończenia nie może być w przeszłości</small>
+      </div>
+      <div *ngIf="needToCheckInputs">
+        <h5 class="text text-danger">Uzupełnij poprawnie wszystkie pola</h5>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary" (click)="addItem()">Dodaj przedmiot</button>
+      </div>
+    </div>
+    <div class="col-md-6" *ngIf="isAddingItem">
+      <h4 class="text text-success">Przedmiot aukcji</h4>
+      <hr />
+      <div class="form-group">
+        <label for="auctionType">Kategoria: </label>
+        <select [(ngModel)]="selectedAuctionType" class="form-control" id="auctionType">
+          <option value="" [disabled]="true">-- wybierz kategorię --</option>
+          <option *ngFor="let type of auctionTypes" [ngValue]="type.id">{{type.name}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="title">Tytuł</label>
+        <input #itemName type="text" id="#itemName" class="form-control" placeholder="Nazwa przedmiotu" (change)="onItemNameChanged(itemName.value)" />
+      </div>
+      <div class="form-group">
+        <label for="description">Opis</label>
+        <textarea #itemDescription rows="7" id="description" class="form-control" placeholder="Krótki opis" (change)="onItemDescriptionChanged(itemDescription.value)"></textarea>
+      </div>
+      <div class="form-inline">
+        <div>Czy nowy?   <input #isItemNew type="checkbox" id="#isItemNew" class="form-control" [checked]="isItemNew" (change)="onIsItemNewChanged(isItemNew.checked)" /></div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-success" (click)="addAuction()">Dodaj aukcję</button>
+      </div>
+    </div>
+  </div>
+</div>

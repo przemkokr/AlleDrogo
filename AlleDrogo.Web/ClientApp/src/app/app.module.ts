@@ -17,6 +17,8 @@ import { AuctionDetail } from './auctions/auction-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorHandlerInterceptor } from './services/ErrorHandlerInterceptor/error-handler-interceptor';
+import { AuctionCreate } from './auctions/auction-create.component';
+
 
 @NgModule({
   declarations: [
@@ -25,7 +27,8 @@ import { ErrorHandlerInterceptor } from './services/ErrorHandlerInterceptor/erro
     HomeComponent,
     Filters,
     Auctions,
-    AuctionDetail
+    AuctionDetail,
+    AuctionCreate
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -36,6 +39,7 @@ import { ErrorHandlerInterceptor } from './services/ErrorHandlerInterceptor/erro
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'auction/:id', component: AuctionDetail, pathMatch: 'full' },
+      { path: 'create', component: AuctionCreate, pathMatch: 'full' }
       // { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
     ]),
     ToastrModule.forRoot()

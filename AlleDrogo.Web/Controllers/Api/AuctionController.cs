@@ -1,4 +1,5 @@
 ﻿using AlleDrogo.Domain.Entities.Auctions;
+using AlleDrogo.Internal.Contracts.Command;
 using AlleDrogo.Internal.Contracts.Query.Auctions;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -35,6 +36,15 @@ namespace AlleDrogo.Web.Controllers.Api
             var auctions = await mediator.Send(new GetAuctionsQuery());
 
             return auctions.FirstOrDefault(a => a.Id == id);
+        }
+
+        [HttpPost]
+        [Route("create")]
+        public async Task<int> CreateAuction([FromBody]AddAuctionCommand command)
+        {
+            var response = await this.mediator.Send(command);
+
+            return response.Id > 0 ? response.Id : 0;
         }
     }
 }

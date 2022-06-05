@@ -72,5 +72,6 @@ export class AuctionDetail implements OnInit {
     }, error => {
       console.log('Something went wrong.');
     })
+    this.isAddingBid = false;
   }
 }
