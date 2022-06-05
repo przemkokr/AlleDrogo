@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-7">
+      <h3 class="text text-primary">{{auction.title}}</h3>
+      <h5>Data zakończenia: {{auction.endDate | date:'short'}}</h5>
+      <div class="row">
+        <div class="col-md-12">
+          {{auction.description}}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <hr />
+          <h6>
+            Przedmiot aukcji
+          </h6>
+          <div>{{auction.item.name}}</div>
+          <div>{{auction.item.description}}</div>
+          <h5 class="text text-success">Aktualna cena: {{auction.currentValue}} zł</h5>
+        </div>
+      </div>
+      <div class="row" *ngIf="auction.bids.length > 0">
+        <div class="col-md-12">
+          <hr />
+          <h6>
+            Przebieg aukcji
+          </h6>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Wartość</th>
+                <th>Data</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let bid of auction.bids">
+                <td>{{bid.bidAmount}} zł</td>
+                <td>{{bid.biddingTime | date: 'short'}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5" *ngIf="(isAuthenticated | async)">
+      <div *ngIf="(auction.isBuyNow)">
+        <h5>Dla przedmiotu dostępna jest opcja Kup Teraz!</h5>
+        <h3>Kup teraz: {{auction.buyNowValue}} zł</h3>
+        <button class="btn btn-success">Kup teraz</button> Lub <button class="btn btn-primary" (click)="addBid()">Licytuj</button>
+      </div>
+      <div *ngIf="!(auction.isBuyNow)">
+        <button class="btn btn-primary" (click)="addBid()">Licytuj</button>
+      </div>
+      <div *ngIf="isAddingBid">
+        <hr />
+        <div class="form form-group">
+          <label for="bid">Licytacja</label>
+          <input type="text" id="bid" class="form-control" placeholder="Podaj wartość" #bidValue />
+          <small id="bidHelp" class="form-text text-muted">Wartość powinna być nie mniejsza niż obecna wartość przedmiotu</small>
+          <button class="btn btn-primary" (click)="bid(bidValue.value)">Zalicytuj</button>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-5" *ngIf="!(isAuthenticated | async)">
+      <h5>Zaloguj się by móc licytować</h5>
+      <a class="btn btn-primary" [routerLink]='["/authentication/login"]'>Zaloguj</a>
+    </div>
+  </div>
+</div>

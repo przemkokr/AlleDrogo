@@ -4,4 +4,21 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Query\Commands\**" />
+    <EmbeddedResource Remove="Query\Commands\**" />
+    <None Remove="Query\Commands\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MediatR" Version="10.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AlleDrogo.Domain\AlleDrogo.Domain.csproj" />
+    <ProjectReference Include="..\AlleDrogo.Infrastructure\AlleDrogo.Infrastructure.csproj" />
+    <ProjectReference Include="..\AlleDrogo.Internal.Contracts\AlleDrogo.Internal.Contracts.csproj" />
+    <ProjectReference Include="..\AlleDrogo.Persistance\AlleDrogo.Persistance.csproj" />
+  </ItemGroup>
+
 </Project>

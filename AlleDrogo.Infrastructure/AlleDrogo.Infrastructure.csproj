@@ -4,4 +4,14 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AlleDrogo.Internal.Contracts\AlleDrogo.Internal.Contracts.csproj" />
+    <ProjectReference Include="..\AlleDrogo.Persistance\AlleDrogo.Persistance.csproj" />
+  </ItemGroup>
+
 </Project>
