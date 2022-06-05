@@ -17,8 +17,8 @@ namespace AlleDrogo.Infrastructure.DatabaseInitializer
         private readonly IUserService userService;
 
         public DatabaseInitializer(
-            IRepository<Auction> repository, 
-            RoleManager<IdentityRole> roleManager, 
+            IRepository<Auction> repository,
+            RoleManager<IdentityRole> roleManager,
             UserManager<ApplicationUser> userManager,
             IUserService userService)
         {

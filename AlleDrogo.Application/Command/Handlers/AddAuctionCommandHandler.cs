@@ -30,41 +30,6 @@ namespace AlleDrogo.Application.Command.Handlers
             return new AddAuctionResult { Id = auction.Id };
         }
 
-        //private async Task<AuctionItem> AddAuctionItem(AuctionItemModel item)
-        //{
-        //    var auctionItem = new AuctionItem(
-        //        item.Name,
-        //        await ResolveCategory(item.Category),
-        //        item.Description,
-        //        true
-        //        );
-
-        //    auctionItemRepository.Add(auctionItem);
-        //    auctionItemRepository.SaveChanges();
-        //    return auctionItem;
-        //}
-
-        //private async Task<Category> ResolveCategory(CategoryEnum category)
-        //{
-        //    await Task.CompletedTask;
-
-        //    return category switch
-        //    {
-        //        CategoryEnum.CARS => Category.CARS,
-        //        CategoryEnum.FASHION => Category.FASHION,
-        //        CategoryEnum.ELECTRONICS => Category.ELECTRONICS,
-        //        CategoryEnum.PLANTS => Category.PLANTS,
-        //        CategoryEnum.SERVICES => Category.SERVICES,
-        //        CategoryEnum.GAMES => Category.GAMES,
-        //        CategoryEnum.DRUGS => Category.DRUGS,
-        //        CategoryEnum.FURNITURE => Category.FURNITURE,
-        //        CategoryEnum.CULTURE => Category.CULTURE,
-        //        CategoryEnum.BEAUTY => Category.BEAUTY,
-        //        CategoryEnum.BRIBES_FOR_GOOD_GRADES_FOR_THE_DEVELOPMENT_TEAM => Category.BRIBES_FOR_GOOD_GRADES_FOR_THE_DEVELOPMENT_TEAM,
-        //        _ => throw new ValidationException("Nieobsługiwana kategoria!")
-        //    };
-        //}
-
         private async Task<Auction> AddAuction(AddAuctionCommand request)
         {
             var user = await this.userService.GetUser(request.Username);

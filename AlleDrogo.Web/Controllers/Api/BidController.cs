@@ -18,7 +18,7 @@ namespace AlleDrogo.Web.Controllers.Api
 
         [HttpPost]
         [Route("bid")]
-        public async Task Bid([FromBody]BidAuctionCommand command)
+        public async Task Bid([FromBody] BidAuctionCommand command)
         {
             await this.mediator.Send(command);
         }

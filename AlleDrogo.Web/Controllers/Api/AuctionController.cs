@@ -40,7 +40,7 @@ namespace AlleDrogo.Web.Controllers.Api
 
         [HttpPost]
         [Route("create")]
-        public async Task<int> CreateAuction([FromBody]AddAuctionCommand command)
+        public async Task<int> CreateAuction([FromBody] AddAuctionCommand command)
         {
             var response = await this.mediator.Send(command);
 
