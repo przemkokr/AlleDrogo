@@ -14,13 +14,11 @@ namespace AlleDrogo.Application.Command.Handlers
     public class AddAuctionCommandHandler : IRequestHandler<AddAuctionCommand, AddAuctionResult>
     {
         private readonly IRepository<Auction> auctionRepository;
-        private readonly IRepository<AuctionItem> auctionItemRepository;
         private readonly IUserService userService;
 
-        public AddAuctionCommandHandler(IRepository<Auction> auctionRepository, IRepository<AuctionItem> auctionItemRepository, IUserService userService)
+        public AddAuctionCommandHandler(IRepository<Auction> auctionRepository, IUserService userService)
         {
             this.auctionRepository = auctionRepository;
-            this.auctionItemRepository = auctionItemRepository;
             this.userService = userService;
         }
 
