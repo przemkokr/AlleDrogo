@@ -1,4 +1,4 @@
-﻿using AlleDrogo.Domain.Entities.Auction;
+using AlleDrogo.Domain.Entities.Auction;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +9,19 @@ namespace AlleDrogo.Domain.Entities.AppUser
     {
         public ICollection<Rating> ListOfRatings { get; protected set; }
 
-        public double GetRating()
+        public double Rating
         {
-            double averageRating = 0;
-            foreach (var rating in this.ListOfRatings)
+            get
             {
-                averageRating += rating.RatingPoints;
+                double averageRating = 0;
+                foreach (var rating in this.ListOfRatings)
+                {
+                    averageRating += rating.RatingPoints;
+                }
+                return averageRating / ListOfRatings.Count();
             }
-            return averageRating/ListOfRatings.Count();
         }
     }
+
 }
+
