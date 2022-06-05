@@ -12,13 +12,11 @@ namespace AlleDrogo.Application.Command.Handlers
 {
     public class BidAuctionCommandHandler : IRequestHandler<BidAuctionCommand>
     {
-        private readonly IRepository<Bid> bidRepository;
         private readonly IRepository<Auction> auctionRepository;
         private readonly IUserService userService;
 
-        public BidAuctionCommandHandler(IRepository<Bid> bidRepository, IRepository<Auction> auctionRepository, IUserService userService)
+        public BidAuctionCommandHandler(IRepository<Auction> auctionRepository, IUserService userService)
         {
-            this.bidRepository = bidRepository;
             this.auctionRepository = auctionRepository;
             this.userService = userService;
         }
@@ -28,13 +26,13 @@ namespace AlleDrogo.Application.Command.Handlers
             var auction = auctionRepository.GetById(request.AuctionId);
             if (auction == null)
             {
-                throw new ValidationException("Auction not found!");
+                throw new ValidationException("Nie znaleziono aukcji. Prawdopodobnie została zakończona w czasie, kiedy licytowałeś.");
             }
 
             var user = await this.userService.GetUser(request.Username);
             if (user == null)
             {
-                throw new ValidationException("User not found!");
+                throw new ValidationException("Nie znaleziono użytkownika.");
             }
 
             var bid = new Bid(
@@ -46,7 +44,7 @@ namespace AlleDrogo.Application.Command.Handlers
 
             if (bid.BidAmount <= auction.CurrentValue)
             {
-                throw new ValidationException("Bid value must be higher than current value!");
+                throw new ValidationException("Oferta, którą składasz, musi być wyższa niż aktualna wartość przedmiotu w aukcji.");
             }
             else if (bid.BidAmount >= auction.BuyNowValue)
             {

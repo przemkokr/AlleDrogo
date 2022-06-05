@@ -16,6 +16,7 @@ import { AuctionDetail } from './auctions/auction-detail.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ErrorHandlerInterceptor } from './services/ErrorHandlerInterceptor/error-handler-interceptor';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ToastrModule } from 'ngx-toastr';
     ToastrModule.forRoot()
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorHandlerInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })

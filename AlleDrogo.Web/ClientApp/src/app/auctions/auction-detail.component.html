@@ -19,7 +19,7 @@
           <h5 class="text text-success">Aktualna cena: {{auction.currentValue}} zł</h5>
         </div>
       </div>
-      <div class="row">
+      <div class="row" *ngIf="auction.bids.length > 0">
         <div class="col-md-12">
           <hr />
           <h6>
@@ -43,10 +43,13 @@
       </div>
     </div>
     <div class="col-lg-5" *ngIf="(isAuthenticated | async)">
-      <div *ngIf="(auction.isBuyNow && auction.isBuyNow == true)">
+      <div *ngIf="(auction.isBuyNow)">
         <h5>Dla przedmiotu dostępna jest opcja Kup Teraz!</h5>
         <h3>Kup teraz: {{auction.buyNowValue}} zł</h3>
         <button class="btn btn-success">Kup teraz</button> Lub <button class="btn btn-primary" (click)="addBid()">Licytuj</button>
+      </div>
+      <div *ngIf="!(auction.isBuyNow)">
+        <button class="btn btn-primary" (click)="addBid()">Licytuj</button>
       </div>
       <div *ngIf="isAddingBid">
         <hr />

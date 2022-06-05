@@ -52,6 +52,8 @@
     <None Remove="ClientApp\src\app\models\item-model.ts" />
     <None Remove="ClientApp\src\app\services\auctionService.ts" />
     <None Remove="ClientApp\src\app\services\BidService.ts" />
+    <None Remove="ClientApp\src\app\services\ErrorHandlerInterceptor\error-handle-service.ts" />
+    <None Remove="ClientApp\src\app\services\ErrorHandlerInterceptor\error-handler-interceptor.ts" />
     <None Remove="ClientApp\tsconfig.json" />
   </ItemGroup>
 
