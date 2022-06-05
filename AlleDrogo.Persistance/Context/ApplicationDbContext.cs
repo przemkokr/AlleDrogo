@@ -35,7 +35,7 @@ namespace AlleDrogo.Persistance.Context
             new ItemPhotoMap(modelBuilder.Entity<ItemPhoto>());
             new BidMap(modelBuilder.Entity<Bid>());
             new ApplicationUserMap(modelBuilder.Entity<ApplicationUser>());
-            new RatingMapper(modelBuilder.Entity<Rating>());
+            new RatingMap(modelBuilder.Entity<Rating>());
 
         }
     }

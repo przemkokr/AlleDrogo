@@ -1,4 +1,4 @@
-using AlleDrogo.Domain.Entities.Auction;
+using AlleDrogo.Domain.Entities.Auctions;
 using Microsoft.AspNetCore.Identity;
 using System.Collections.Generic;
 using System.Linq;
