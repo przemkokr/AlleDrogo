@@ -25,6 +25,8 @@ namespace AlleDrogo.Persistance.Context
 
         public DbSet<Bid> Bids { get; set; }
 
+        public DbSet<Rating> Ratings { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -32,6 +34,8 @@ namespace AlleDrogo.Persistance.Context
             new AuctionItemMap(modelBuilder.Entity<AuctionItem>());
             new ItemPhotoMap(modelBuilder.Entity<ItemPhoto>());
             new BidMap(modelBuilder.Entity<Bid>());
+            new ApplicationUserMap(modelBuilder.Entity<ApplicationUser>());
+            new RatingMapper(modelBuilder.Entity<Rating>());
 
         }
     }
