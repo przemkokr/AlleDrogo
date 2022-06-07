@@ -1,4 +1,5 @@
-﻿using AlleDrogo.Domain.Entities.Auctions;
+﻿using AlleDrogo.Domain.Entities.AppUser;
+using AlleDrogo.Domain.Entities.Auctions;
 using AlleDrogo.Domain.Entities.Bids;
 using AlleDrogo.Infrastructure.Identity;
 using AlleDrogo.Internal.Contracts.Command;
@@ -48,29 +49,16 @@ namespace AlleDrogo.Application.Command.Handlers
             }
             else if (bid.BidAmount >= auction.BuyNowValue)
             {
-                auction.SetWinner(user);
-                BuyNow(auction);
+                auction.BuyNow(user);
+                auctionRepository.SaveChanges();
             }
             else
             {
-                auction.SetWinner(user);
-                AddBid(auction, bid);
+                auction.AddBid(bid);
+                auctionRepository.SaveChanges();
             }
 
             return Unit.Value;
-        }
-
-        private void BuyNow(Auction auction)
-        {
-            auction.SetSold();
-
-            auctionRepository.SaveChanges();
-        }
-
-        private void AddBid(Auction auction, Bid bid)
-        {
-            auction.AddBid(bid);
-            auctionRepository.SaveChanges();
         }
     }
 }
