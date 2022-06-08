@@ -52,12 +52,14 @@
     <None Remove="ClientApp\src\app\models\auction-item-model.ts" />
     <None Remove="ClientApp\src\app\models\auction-model.ts" />
     <None Remove="ClientApp\src\app\models\bid-command.ts" />
+    <None Remove="ClientApp\src\app\models\buy-now-command.ts" />
     <None Remove="ClientApp\src\app\models\category-enum.ts" />
     <None Remove="ClientApp\src\app\models\item-model.ts" />
     <None Remove="ClientApp\src\app\services\auctionService.ts" />
     <None Remove="ClientApp\src\app\services\BidService.ts" />
     <None Remove="ClientApp\src\app\services\ErrorHandlerInterceptor\error-handle-service.ts" />
     <None Remove="ClientApp\src\app\services\ErrorHandlerInterceptor\error-handler-interceptor.ts" />
+    <None Remove="ClientApp\src\app\summary\auction.summary.component.ts" />
     <None Remove="ClientApp\tsconfig.json" />
   </ItemGroup>
 

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace AlleDrogo.Application.Command.Handlers
 {
-    public class RateSellerByAuctionHandler : IRequestHandler<RateSellerByAuction, int>
+    public class RateSellerByAuctionHandler : IRequestHandler<RateSellerByAuctionCommand, int>
     {
         private readonly IRepository<Rating> _ratingRepository;
         private readonly IRepository<Auction> _auctionRepository;
@@ -21,7 +21,7 @@ namespace AlleDrogo.Application.Command.Handlers
             this._auctionRepository = auctionRepository;
             this._userRepository = userRepository;
         }
-        public async Task<int> Handle(RateSellerByAuction request, CancellationToken cancellationToken)
+        public async Task<int> Handle(RateSellerByAuctionCommand request, CancellationToken cancellationToken)
         {
             if(request.RateSeller.RatingPoints < 1 || request.RateSeller.RatingPoints > 6)
             {

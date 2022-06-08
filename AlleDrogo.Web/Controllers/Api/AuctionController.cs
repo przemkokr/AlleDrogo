@@ -26,6 +26,8 @@ namespace AlleDrogo.Web.Controllers.Api
         {
             var auctions = await mediator.Send(new GetAuctionsQuery());
 
+            auctions = auctions.Where(a => !a.IsSold);
+
             return auctions;
         }
 

@@ -29,6 +29,11 @@ namespace AlleDrogo.Application.Command.Handlers
                 throw new ValidationException("Nie znaleziono aukcji. Prawdopodobnie została zakończona w czasie, kiedy licytowałeś.");
             }
 
+            if (auction.IsSold)
+            {
+                throw new ValidationException("Aukcja została zakończona.");
+            }
+
             var user = await userService.GetUser(request.Username);
             if (user == null)
             {

@@ -3,6 +3,7 @@ import { Inject, Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { BidCommand } from "../models/bid-command";
+import { BuyNowCommand } from "../models/buy-now-command";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,14 @@ export class BidService {
       headers: headerOptions
     }).pipe(catchError(this.handleError.bind(this)));
   }
+
+  public buyNow(command: BuyNowCommand): Observable<number> {
+    const body = JSON.stringify(command);
+    const headerOptions = new HttpHeaders({ 'Content-Type': 'application/json' });
+    return this.httpClient.post<number>(this.apiUrl + '/buyNow', body, {
+      headers: headerOptions
+    }).pipe(catchError(this.handleError.bind(this)));
+  };
 
   handleError(errorResponse: HttpErrorResponse) {
     if (errorResponse.error instanceof ErrorEvent) {

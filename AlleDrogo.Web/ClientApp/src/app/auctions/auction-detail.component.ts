@@ -1,11 +1,12 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { ToastrService } from "ngx-toastr";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { AuthorizeService } from "../../api-authorization/authorize.service";
 import { Auction } from "../models/auction-model";
 import { BidCommand } from "../models/bid-command";
+import { BuyNowCommand } from "../models/buy-now-command";
 import { AuctionService } from "../services/auctionService";
 import { BidService } from "../services/BidService";
 
@@ -20,6 +21,7 @@ export class AuctionDetail implements OnInit {
   private sub: any;
   isAddingBid: boolean = false;
   bidValue: number;
+  isDecisionMaking: boolean = false;
 
   public isAuthenticated: Observable<boolean>;
   public userName: Observable<string>;
@@ -30,7 +32,8 @@ export class AuctionDetail implements OnInit {
     private readonly bidService: BidService,
     private route: ActivatedRoute,
     private authorizeService: AuthorizeService,
-    private toastr: ToastrService) { }
+    private toastr: ToastrService,
+    private router: Router  ) { }
 
   addBid = () => {
     this.isAddingBid = !this.isAddingBid;
@@ -38,6 +41,13 @@ export class AuctionDetail implements OnInit {
 
   bid = (value: string) => {
     let bidValue = +value;
+
+    if (this.auction.isBuyNow && bidValue >= this.auction.buyNowValue) {
+      this.isDecisionMaking = true;
+      this.isAddingBid = false;
+      return;
+    }
+
     let command = new BidCommand;
     command.auctionId = this.id;
     command.username = this.loggedUser;
@@ -50,6 +60,27 @@ export class AuctionDetail implements OnInit {
     }, (error) => {
       alert("Error" + error)}
     );
+  }
+
+  buyNow = () => {
+    let command = new BuyNowCommand;
+    command.auctionId = this.id;
+    command.userName = this.loggedUser;
+
+    this.bidService.buyNow(command).subscribe((auctionId) => {
+      this.toastr.success("Kupiłeś przedmiot! Za chwilę zostaniesz przekierowany do podsumowania");
+      setTimeout(() => {
+        var url = "/summary/" + auctionId;
+        this.router.navigateByUrl(url);
+      }, 3000);
+    }, (error) => {
+      alert("Error" + error)
+    }
+    );
+  }
+
+  hideBuyNowPanel = () => {
+    this.isDecisionMaking = false;
   }
 
   ngOnInit() {
