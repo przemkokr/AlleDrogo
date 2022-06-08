@@ -47,7 +47,6 @@
     <None Remove="ClientApp\src\app\auctions\auction-create.component.ts" />
     <None Remove="ClientApp\src\app\auctions\auction-detail.component.ts" />
     <None Remove="ClientApp\src\app\auctions\auctions.component.ts" />
-    <None Remove="ClientApp\src\app\filter-component\filters.component.ts" />
     <None Remove="ClientApp\src\app\models\add-auction-command.ts" />
     <None Remove="ClientApp\src\app\models\auction-item-model.ts" />
     <None Remove="ClientApp\src\app\models\auction-model.ts" />
@@ -76,9 +75,6 @@
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\src\app\auctions\auctions.component.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="ClientApp\src\app\filter-component\filters.component.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="ClientApp\src\app\models\auction-model.ts">
