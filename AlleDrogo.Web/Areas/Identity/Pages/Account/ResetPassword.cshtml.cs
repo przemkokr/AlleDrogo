@@ -25,18 +25,19 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Pole \"{0}\" jest wymagane")]
+            [EmailAddress(ErrorMessage="Podany email jest nieprawid³owy")]
             public string Email { get; set; }
 
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Pole \"{0}\" jest wymagane")]
+            [Display(Name = "Has³o")]
+            [StringLength(100, ErrorMessage = "{0} musi mieæ minimum {2} i maksumum {1} znaków.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "PotwierdŸ has³o")]
+            [Compare("Password", ErrorMessage = "Has³a nie pasuj¹ do siebie.")]
             public string ConfirmPassword { get; set; }
 
             public string Code { get; set; }

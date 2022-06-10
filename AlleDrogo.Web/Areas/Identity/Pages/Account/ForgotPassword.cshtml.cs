@@ -29,8 +29,8 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Pole \"{0}\" jest wymagane")]
+            [EmailAddress(ErrorMessage="Podany email jest nieprawid³owy")]
             public string Email { get; set; }
         }
 
@@ -57,7 +57,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account
 
                 await _emailSender.SendEmailAsync(
                     Input.Email,
-                    "Reset Password",
+                    "Reset Has³a",
                     $"Please reset your password by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                 return RedirectToPage("./ForgotPasswordConfirmation");

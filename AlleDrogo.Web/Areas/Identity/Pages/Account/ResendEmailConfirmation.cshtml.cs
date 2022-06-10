@@ -29,8 +29,8 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Pole \"{0}\" jest wymagane")]
+            [EmailAddress(ErrorMessage="Podany email jest nieprawid³owy")]
             public string Email { get; set; }
         }
 
@@ -48,7 +48,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account
             var user = await _userManager.FindByEmailAsync(Input.Email);
             if (user == null)
             {
-                ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+                ModelState.AddModelError(string.Empty, "Email weryfikacyjny zosta³ wys³any. SprawdŸ swoj¹ skrzynkê.");
                 return Page();
             }
 
@@ -65,7 +65,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account
                 "Confirm your email",
                 $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
-            ModelState.AddModelError(string.Empty, "Verification email sent. Please check your email.");
+            ModelState.AddModelError(string.Empty, "Email weryfikacyjny zosta³ wys³any. SprawdŸ swoj¹ skrzynkê.");
             return Page();
         }
     }
