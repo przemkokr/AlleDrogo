@@ -37,7 +37,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID 'user.Id'.");
+                return NotFound($"Nie mo¿na za³adowaæ u¿ytkownika z ID 'user.Id'.");
             }
 
             CurrentLogins = await _userManager.GetLoginsAsync(user);
@@ -53,7 +53,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID 'user.Id'.");
+                return NotFound($"Nie mo¿na za³adowaæ u¿ytkownika z ID 'user.Id'.");
             }
 
             var result = await _userManager.RemoveLoginAsync(user, loginProvider, providerKey);
@@ -64,7 +64,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account.Manage
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "The external login was removed.";
+            StatusMessage = "Zewnêtrzne logowanie zosta³o usuniête.";
             return RedirectToPage();
         }
 
@@ -84,7 +84,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID 'user.Id'.");
+                return NotFound($"Nie mo¿na za³adowaæ u¿ytkownika z ID 'user.Id'.");
             }
 
             var info = await _signInManager.GetExternalLoginInfoAsync(user.Id);
@@ -103,7 +103,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account.Manage
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
-            StatusMessage = "The external login was added.";
+            StatusMessage = "Zewnêtrzne logowanie zosta³o dodane.";
             return RedirectToPage();
         }
     }

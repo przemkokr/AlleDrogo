@@ -46,8 +46,8 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Pole \"{0}\" jest wymagane")]
+            [EmailAddress(ErrorMessage="Podany email jest nieprawid³owy")]
             public string Email { get; set; }
         }
 

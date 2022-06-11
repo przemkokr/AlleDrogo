@@ -30,9 +30,9 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account
         public class InputModel
         {
             [BindProperty]
-            [Required]
+            [Required(ErrorMessage = "Pole \"{0}\" jest wymagane")]
             [DataType(DataType.Text)]
-            [Display(Name = "Recovery Code")]
+            [Display(Name = "Kod odzyskuj¹cy")]
             public string RecoveryCode { get; set; }
         }
 
@@ -42,7 +42,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                throw new InvalidOperationException($"Unable to load two-factor authentication user.");
+                throw new InvalidOperationException($"Nie mo¿na za³adowaæ u¿ytkownika uwierzytelniania dwusk³adnikowego.");
             }
 
             ReturnUrl = returnUrl;
@@ -60,7 +60,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                throw new InvalidOperationException($"Unable to load two-factor authentication user.");
+                throw new InvalidOperationException($"Nie mo¿na za³adowaæ u¿ytkownika uwierzytelniania dwusk³adnikowego.");
             }
 
             var recoveryCode = Input.RecoveryCode.Replace(" ", string.Empty);
@@ -69,18 +69,18 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account
 
             if (result.Succeeded)
             {
-                _logger.LogInformation("User with ID '{UserId}' logged in with a recovery code.", user.Id);
+                _logger.LogInformation("U¿ytkwonik z ID '{UserId}' zalgowany za pomoc¹ kodu odzyskujacego.", user.Id);
                 return LocalRedirect(returnUrl ?? Url.Content("~/"));
             }
             if (result.IsLockedOut)
             {
-                _logger.LogWarning("User with ID '{UserId}' account locked out.", user.Id);
+                _logger.LogWarning("Konto u¿ytkownika z Id '{UserId}' zablokowane.", user.Id);
                 return RedirectToPage("./Lockout");
             }
             else
             {
-                _logger.LogWarning("Invalid recovery code entered for user with ID '{UserId}' ", user.Id);
-                ModelState.AddModelError(string.Empty, "Invalid recovery code entered.");
+                _logger.LogWarning("Nieprawid³owy kod odzyskuj¹cy wpisany dla u¿ytkownika z ID '{UserId}' ", user.Id);
+                ModelState.AddModelError(string.Empty, "Nieprawid³owy kod odzyskuj¹cy.");
                 return Page();
             }
         }
