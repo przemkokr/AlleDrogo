@@ -46,8 +46,7 @@ export class AuctionCreate implements OnInit {
     { id: 5, name: "Gry" },
     { id: 6, name: "Medykamenty" },
     { id: 7, name: "Kultura i sztuka" },
-    { id: 8, name: "Uroda" },
-    { id: 9, name: "Łapówki dla profesora :)" }
+    { id: 8, name: "Uroda" }
   ];
 
   selectedAuctionType: number = null;
