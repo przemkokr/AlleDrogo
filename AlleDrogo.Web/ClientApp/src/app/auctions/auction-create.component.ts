@@ -38,16 +38,16 @@ export class AuctionCreate implements OnInit {
   public createdAuctionId: number = 0;
 
   auctionTypes = [
-    { id: 1, name: "Samochody" },
-    { id: 2, name: "Moda" },
-    { id: 3, name: "Elektronika" },
-    { id: 4, name: "Dom i ogród" },
-    { id: 5, name: "Usługi" },
-    { id: 6, name: "Gry" },
-    { id: 7, name: "Medykamenty" },
-    { id: 8, name: "Kultura i sztuka" },
-    { id: 9, name: "Uroda" },
-    { id: 10, name: "Łapówki dla profesora :)" }
+    { id: 0, name: "Samochody" },
+    { id: 1, name: "Moda" },
+    { id: 2, name: "Elektronika" },
+    { id: 3, name: "Dom i ogród" },
+    { id: 4, name: "Usługi" },
+    { id: 5, name: "Gry" },
+    { id: 6, name: "Medykamenty" },
+    { id: 7, name: "Kultura i sztuka" },
+    { id: 8, name: "Uroda" },
+    { id: 9, name: "Łapówki dla profesora :)" }
   ];
 
   selectedAuctionType: number = null;

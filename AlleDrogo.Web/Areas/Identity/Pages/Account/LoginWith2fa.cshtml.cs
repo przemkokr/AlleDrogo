@@ -31,13 +31,13 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
-            [StringLength(7, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Pole \"{0}\" jest wymagane")]
+            [StringLength(7, ErrorMessage = "{0} musi mieæ minimalnie {2} i maksymalnie {1} znaków.", MinimumLength = 6)]
             [DataType(DataType.Text)]
-            [Display(Name = "Authenticator code")]
+            [Display(Name = "Kod uwierzytelniaj¹cy")]
             public string TwoFactorCode { get; set; }
 
-            [Display(Name = "Remember this machine")]
+            [Display(Name = "Zapamiêtaj to urz¹dzenie")]
             public bool RememberMachine { get; set; }
         }
 
@@ -48,7 +48,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account
 
             if (user == null)
             {
-                throw new InvalidOperationException($"Unable to load two-factor authentication user.");
+                throw new InvalidOperationException($"Nie mo¿na za³adowaæ u¿ytkownika uwierzytelniania dwusk³adnikowego.");
             }
 
             ReturnUrl = returnUrl;
@@ -69,7 +69,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
             if (user == null)
             {
-                throw new InvalidOperationException($"Unable to load two-factor authentication user.");
+                throw new InvalidOperationException($"Nie mo¿na za³adowaæ u¿ytkownika uwierzytelniania dwusk³adnikowego.");
             }
 
             var authenticatorCode = Input.TwoFactorCode.Replace(" ", string.Empty).Replace("-", string.Empty);

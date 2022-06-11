@@ -20,6 +20,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account.Manage
             _signInManager = signInManager;
         }
 
+        [Display(Name = "U¿ytkownik")]
         public string Username { get; set; }
 
         [TempData]
@@ -30,8 +31,8 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account.Manage
 
         public class InputModel
         {
-            [Phone]
-            [Display(Name = "Phone number")]
+            [Phone(ErrorMessage = "Wpisany numer jest niepoprawny")]
+            [Display(Name = "Numer telefonu")]
             public string PhoneNumber { get; set; }
         }
 
@@ -53,7 +54,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Nie mo¿na za³adowaæ u¿ytkownika z ID '{_userManager.GetUserId(User)}'.");
             }
 
             await LoadAsync(user);
@@ -65,7 +66,7 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Nie mo¿na za³adowaæ u¿ytkownika z ID '{_userManager.GetUserId(User)}'.");
             }
 
             if (!ModelState.IsValid)
@@ -80,13 +81,13 @@ namespace AlleDrogo.Web.Areas.Identity.Pages.Account.Manage
                 var setPhoneResult = await _userManager.SetPhoneNumberAsync(user, Input.PhoneNumber);
                 if (!setPhoneResult.Succeeded)
                 {
-                    StatusMessage = "Unexpected error when trying to set phone number.";
+                    StatusMessage = "Nieoczekiwany b³¹d podczas ustawiania numeru telefonu.";
                     return RedirectToPage();
                 }
             }
 
             await _signInManager.RefreshSignInAsync(user);
-            StatusMessage = "Your profile has been updated";
+            StatusMessage = "Twój profil zosta³ zaktualizowany";
             return RedirectToPage();
         }
     }

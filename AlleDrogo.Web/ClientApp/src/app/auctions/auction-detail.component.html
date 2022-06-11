@@ -46,24 +46,37 @@
       <div *ngIf="(auction.isBuyNow)">
         <h5>Dla przedmiotu dostępna jest opcja Kup Teraz!</h5>
         <h3>Kup teraz: {{auction.buyNowValue}} zł</h3>
-        <button class="btn btn-success">Kup teraz</button> Lub <button class="btn btn-primary" (click)="addBid()">Licytuj</button>
+        <button [disabled]="isDecisionMaking" class="btn btn-success">Kup teraz</button> Lub <button class="btn btn-primary" (click)="addBid()">Licytuj</button>
       </div>
       <div *ngIf="!(auction.isBuyNow)">
-        <button class="btn btn-primary" (click)="addBid()">Licytuj</button>
+        <button [disabled]="isDecisionMaking" class="btn btn-primary" (click)="addBid()">Licytuj</button>
       </div>
       <div *ngIf="isAddingBid">
         <hr />
-        <div class="form form-group">
+        <div class="form form-group" *ngIf="!isDecisionMaking">
           <label for="bid">Licytacja</label>
           <input type="text" id="bid" class="form-control" placeholder="Podaj wartość" #bidValue />
           <small id="bidHelp" class="form-text text-muted">Wartość powinna być nie mniejsza niż obecna wartość przedmiotu</small>
           <button class="btn btn-primary" (click)="bid(bidValue.value)">Zalicytuj</button>
         </div>
       </div>
+      <div *ngIf="isDecisionMaking" style="margin-top: 20px;">
+        <div class="card bg-warning">
+          <div class="card-body">
+            <h5 class="card-title">Zbyt wysoka kwota</h5>
+            <p class="card-text">Licytujesz za kwotę przekraczającą wartość Kup Teraz.</p>
+            <p class="card-text">Jeśli kontynuujesz, zakupisz przedmiot za kwotę <strong>{{auction.buyNowValue}} zł</strong></p>
+          </div>
+        </div>
+        <div class="float-end" style="margin-top: 15px;">
+          <button class="btn btn-primary float-right" style="margin-left:10px;" (click)="buyNow()">Kontynuuj</button>
+          <button class="btn btn-secondary float-right" (click)="hideBuyNowPanel()">Anuluj</button>
+        </div>
+      </div>      
     </div>
     <div class="col-lg-5" *ngIf="!(isAuthenticated | async)">
       <h5>Zaloguj się by móc licytować</h5>
       <a class="btn btn-primary" [routerLink]='["/authentication/login"]'>Zaloguj</a>
-    </div>
+    </div>    
   </div>
 </div>

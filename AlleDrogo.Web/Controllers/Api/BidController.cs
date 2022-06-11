@@ -22,5 +22,14 @@ namespace AlleDrogo.Web.Controllers.Api
         {
             await this.mediator.Send(command);
         }
+
+        [HttpPost]
+        [Route("buyNow")]
+        public async Task<int> BuyNow([FromBody] BuyNowCommand command)
+        {
+            var response = await this.mediator.Send(command);
+
+            return response.Id > 0 ? response.Id : 0;
+        }
     }
 }

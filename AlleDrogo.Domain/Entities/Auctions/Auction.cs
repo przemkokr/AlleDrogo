@@ -3,6 +3,7 @@ using AlleDrogo.Domain.Entities.Base;
 using AlleDrogo.Domain.Entities.Bids;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace AlleDrogo.Domain.Entities.Auctions
 {
@@ -61,19 +62,17 @@ namespace AlleDrogo.Domain.Entities.Auctions
             BuyNowValue = buyNowValue;
         }
 
-        public void SetWinner(ApplicationUser winner)
-        {
-            Winner = winner;
-        }
-
         public void AddBid(Bid bid)
         {
+            Winner = bid.User;
             Bids.Add(bid);
             CurrentValue = bid.BidAmount;
         }
 
-        public void SetSold()
+        public void BuyNow(ApplicationUser user)
         {
+            Winner = user;
+            CurrentValue = BuyNowValue ?? throw new ValidationException("Aukcja nie posiada opcji Kup Teraz!");
             IsSold = true;
         }
     }

@@ -10,7 +10,6 @@ import { HomeComponent } from './home/home.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
-import { Filters } from './filter-component/filters.component';
 import { Auctions } from './auctions/auctions.component';
 import { AuctionDetail } from './auctions/auction-detail.component';
 
@@ -18,6 +17,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { ErrorHandlerInterceptor } from './services/ErrorHandlerInterceptor/error-handler-interceptor';
 import { AuctionCreate } from './auctions/auction-create.component';
+import { AuctionSummary } from './summary/auction.summary.component';
 
 
 @NgModule({
@@ -25,10 +25,10 @@ import { AuctionCreate } from './auctions/auction-create.component';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    Filters,
     Auctions,
     AuctionDetail,
-    AuctionCreate
+    AuctionCreate,
+    AuctionSummary
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -39,7 +39,8 @@ import { AuctionCreate } from './auctions/auction-create.component';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'auction/:id', component: AuctionDetail, pathMatch: 'full' },
-      { path: 'create', component: AuctionCreate, pathMatch: 'full' }
+      { path: 'create', component: AuctionCreate, pathMatch: 'full' },
+      { path: 'summary/:id', component: AuctionSummary, pathMatch: 'full' }
       // { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
     ]),
     ToastrModule.forRoot()
