@@ -16,7 +16,7 @@ export class ErrorHandlerService {
     } else {
       switch (err.status) {
         case 400:
-          errorMessage = `${err.status}: Bad Request`;
+          errorMessage = this.handleBackendValidation(err);
           break;
         case 401:
           errorMessage = `${err.status}: Unauthorized`;
