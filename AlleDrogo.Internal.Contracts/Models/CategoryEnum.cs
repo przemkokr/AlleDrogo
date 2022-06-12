@@ -11,7 +11,6 @@
         DRUGS,
         FURNITURE,
         CULTURE,
-        BEAUTY,
-        BRIBES_FOR_GOOD_GRADES_FOR_THE_DEVELOPMENT_TEAM
+        BEAUTY
     }
 }
