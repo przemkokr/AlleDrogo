@@ -10,11 +10,14 @@
 
 	<!-- Set this to true if you enable server-side prerendering -->
 	<BuildServerSideRenderer>false</BuildServerSideRenderer>
+	<UserSecretsId>42989051-9af3-4d1c-b942-ba2e0b1bc18d</UserSecretsId>
+	<ApplicationInsightsResourceId>/subscriptions/e7a4fbe3-5582-417a-bffa-1d8976edd6dd/resourceGroups/wsb-euw-rg/providers/microsoft.insights/components/AlleDrogoWeb-PZ</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>
 	<PackageReference Include="MediatR" Version="10.0.1" />
 	<PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+	<PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.15.0" />
 	<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="5.0.17" />
 	<PackageReference Include="Microsoft.AspNetCore.SpaServices.Extensions" Version="5.0.17" />
 	<PackageReference Include="Microsoft.AspNetCore.ApiAuthorization.IdentityServer" Version="5.0.17" />
@@ -101,7 +104,7 @@
   <Target Name="PublishRunWebpack" AfterTargets="ComputeFilesToPublish">
 	<!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
 	<Exec WorkingDirectory="$(SpaRoot)" Command="npm install" />
-	<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build -- --prod" />
+	<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build --prod" />
 	<Exec WorkingDirectory="$(SpaRoot)" Command="npm run build:ssr -- --prod" Condition=" '$(BuildServerSideRenderer)' == 'true' " />
 
 	<!-- Include the newly-built files in the publish output -->
