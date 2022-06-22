@@ -24,25 +24,16 @@ namespace AlleDrogo.Application.Query.Handlers.Auctions
         }
         public async Task<IEnumerable<Auction>> Handle(GetFinishedAuctionsByWinner request, CancellationToken cancellationToken)
         {
-            var auctions = _auctionRepository.GetAll().Where(a => a.EndDate > DateTime.Now);
             var user = await _userService.GetUser(request.UserName);
-            var auctionsWonByUser = new List<Auction>();
+
             if (user == null)
             {
-                throw new ValidationException("User not found!");
+                throw new ValidationException("Błąd. Nie znaleziono użytkownika.");
             }
 
-            foreach (var auction in auctions)
-            {
-                if (auction.Winner?.Id == user.Id)
-                {
-                    auctionsWonByUser.Add(auction);
-                }
-
-
-            }
-
-            await Task.CompletedTask;
+            var auctionsWonByUser = _auctionRepository
+                .Find(a => a.IsSold && a.Winner != null && a.Winner.Id == user.Id)
+                .ToList();            
 
             return auctionsWonByUser;
         }
