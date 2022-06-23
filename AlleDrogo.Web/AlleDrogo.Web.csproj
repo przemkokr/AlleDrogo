@@ -50,13 +50,16 @@
     <None Remove="ClientApp\src\app\auctions\auction-create.component.ts" />
     <None Remove="ClientApp\src\app\auctions\auction-detail.component.ts" />
     <None Remove="ClientApp\src\app\auctions\auctions.component.ts" />
+    <None Remove="ClientApp\src\app\auctions\user-auctions.component.ts" />
     <None Remove="ClientApp\src\app\models\add-auction-command.ts" />
     <None Remove="ClientApp\src\app\models\auction-item-model.ts" />
     <None Remove="ClientApp\src\app\models\auction-model.ts" />
     <None Remove="ClientApp\src\app\models\bid-command.ts" />
     <None Remove="ClientApp\src\app\models\buy-now-command.ts" />
     <None Remove="ClientApp\src\app\models\category-enum.ts" />
+    <None Remove="ClientApp\src\app\models\get-by-user-query.ts" />
     <None Remove="ClientApp\src\app\models\item-model.ts" />
+    <None Remove="ClientApp\src\app\models\query-type.ts" />
     <None Remove="ClientApp\src\app\services\auctionService.ts" />
     <None Remove="ClientApp\src\app\services\BidService.ts" />
     <None Remove="ClientApp\src\app\services\ErrorHandlerInterceptor\error-handle-service.ts" />

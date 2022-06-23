@@ -18,6 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ErrorHandlerInterceptor } from './services/ErrorHandlerInterceptor/error-handler-interceptor';
 import { AuctionCreate } from './auctions/auction-create.component';
 import { AuctionSummary } from './summary/auction.summary.component';
+import { UserAuctions } from './auctions/user-auctions.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { AuctionSummary } from './summary/auction.summary.component';
     Auctions,
     AuctionDetail,
     AuctionCreate,
-    AuctionSummary
+    AuctionSummary,
+    UserAuctions
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -40,7 +42,8 @@ import { AuctionSummary } from './summary/auction.summary.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'auction/:id', component: AuctionDetail, pathMatch: 'full' },
       { path: 'create', component: AuctionCreate, pathMatch: 'full' },
-      { path: 'summary/:id', component: AuctionSummary, pathMatch: 'full' }
+      { path: 'summary/:id', component: AuctionSummary, pathMatch: 'full' },
+      { path: 'my-auctions', component: UserAuctions, pathMatch: 'full' }
       // { path: 'fetch-data', component: FetchDataComponent, canActivate: [AuthorizeGuard] },
     ]),
     ToastrModule.forRoot()
