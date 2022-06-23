@@ -25,6 +25,9 @@
               [routerLinkActiveOptions]="{ exact: true }">
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="(isAuthenticated | async)">
+            <a class="nav-link text-dark" [routerLink]="['/my-auctions']">Moje aukcje</a>
+          </li>
+          <li class="nav-item" [routerLinkActive]="['link-active']" *ngIf="(isAuthenticated | async)">
             <a class="nav-link text-dark" [routerLink]="['/create']">Nowa aukcja</a>
           </li>
         </ul>

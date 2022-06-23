@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="list-group list-group-flush">
+        <div class="row">
+          <div class="col-md-4">
+            <div class="btn-group">
+              <button class="btn btn-secondary" [class.active]='selectedQueryType == 1' (click)="getActive()">
+                Aktywne
+              </button>
+              <button class="btn btn-secondary" [class.active]='selectedQueryType == 2' (click)="getWon()">
+                Wygrane
+              </button>
+            </div>
+          </div>
+        </div>
+        <p *ngIf="!auctions.length > 0 && selectedQueryType == 1">Brak aktywnych aukcji</p>
+        <p *ngIf="!auctions.length > 0 && selectedQueryType == 2">Brak wygranych aukcji</p>
+        <div class="list-group-item list-group-item-action" *ngFor="let auction of auctions">
+          <div class="row">
+            <div class="col-md-4">
+              <h4>
+                <a routerLink="/auction/{{auction.id}}">
+                  {{auction.title}}
+                </a>
+              </h4>
+            </div>
+            <div class="col-md-4">
+              {{auction.description}}
+            </div>
+            <div class="col-md-4">
+              Aktualna cena: {{auction.currentValue}} zł
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-8">
+              <h6>{{auction.item.name}}</h6>
+            </div>
+            <div class="col-md-4">
+              <h6>{{auction.item.isNew ? 'Nowy' : 'Używany'}}</h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

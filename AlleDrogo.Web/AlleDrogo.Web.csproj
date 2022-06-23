@@ -47,6 +47,7 @@
     <None Remove="ClientApp\src\app\auctions\auction-create.component.ts" />
     <None Remove="ClientApp\src\app\auctions\auction-detail.component.ts" />
     <None Remove="ClientApp\src\app\auctions\auctions.component.ts" />
+    <None Remove="ClientApp\src\app\auctions\user-auctions.component.ts" />
     <None Remove="ClientApp\src\app\models\add-auction-command.ts" />
     <None Remove="ClientApp\src\app\models\auction-item-model.ts" />
     <None Remove="ClientApp\src\app\models\auction-model.ts" />
