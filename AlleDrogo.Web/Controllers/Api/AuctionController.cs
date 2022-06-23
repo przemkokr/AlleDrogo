@@ -51,9 +51,9 @@ namespace AlleDrogo.Web.Controllers.Api
 
         [HttpGet]
         [Route("get-by-user")]
-        public async Task<IEnumerable<Auction>> GetUserAuctions(QueryType type, string username)
+        public async Task<IEnumerable<Auction>> GetUserAuctions([FromQuery] GetByUserQuery query)
         {
-            var auctions = await this.mediator.Send(UserAuctionsQueryFactory.CreateQuery(type, username));
+            var auctions = await this.mediator.Send(UserAuctionsQueryFactory.CreateQuery(query.QueryType, query.Username));
 
             return auctions;
         }
