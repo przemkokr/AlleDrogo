@@ -49,6 +49,15 @@ namespace AlleDrogo.Web.Controllers.Api
             return response.Id > 0 ? response.Id : 0;
         }
 
+        [HttpGet]
+        [Route("get-by-user")]
+        public async Task<IEnumerable<Auction>> GetUserAuctions([FromQuery] GetByUserQuery query)
+        {
+            var auctions = await this.mediator.Send(UserAuctionsQueryFactory.CreateQuery(query.QueryType, query.Username));
+
+            return auctions;
+        }
+
 
     }
 }

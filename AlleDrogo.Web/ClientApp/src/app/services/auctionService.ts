@@ -1,9 +1,10 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Inject, Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { AddAuctionCommand } from "../models/add-auction-command";
 import { Auction } from "../models/auction-model";
+import { GetByUserQuery } from "../models/get-by-user-query";
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +37,14 @@ export class AuctionService {
     return this.httpClient.post<number>(this.apiUrl + '/create', body, {
       headers: headerOptions
     }).pipe(catchError(this.handleError.bind(this)));
+  }
+
+  public getByUser(query: GetByUserQuery) {
+    let params = new HttpParams();
+    params = params.append('queryType', query.queryType.toString());
+    params = params.append('username', query.username);
+
+    return this.httpClient.get<Auction[]>(this.apiUrl + '/get-by-user', { params: params });
   }
 
   handleError(errorResponse: HttpErrorResponse) {
