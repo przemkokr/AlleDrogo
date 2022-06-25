@@ -1,5 +1,9 @@
 # AlleDrogo
 This is Auction Portal Project designed and implemented during sixth semester of WSB college.
+Contributors:
+1. Przemysław Król 11332
+2. Bartłomiej Baca 11325
+3. Marcin Milewski 11339
 
 The main purpose of this project is to identify, define and implement source code with best practices and design patterns, to make code readable, robust, loosely coupled and easily managed.
 
