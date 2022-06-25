@@ -47,20 +47,32 @@ Maps user request to bid command, which is then used to add new bid to auction
 Maps user request to buy now command, which is then used to instantly buy item, which has BuyNow flag set to true
 
 Design Patterns Used
-Factory - Query Factory in Internal.Contracts
-Builder - ModelBuilder (via EF Core) - responsible for creating POCO models from DbContext
-Singleton - Infrastructure/IUserService - singleton implementation is provided by AspNetCore.DependencyInjection - registered service with singleton lifetime scope
-Facade - In Web/ClientApp/Autenthication module - AuthenticationService is used to aggregate functions related to authentication and autorization functions in Angluar App
-Command - In Web/ClientApp on client side and Application library on server side - commands are used to transport data via Mediator bus to their handlers, which then performs logic operations on them
-Mediator - Command and Query Bus are structured into mediator pattern. All operations are only sent to bus, and then mediator choose which handler should be used for specific operation
-Observer - on client side, observer pattern is used to two-way data binding in typescript viewmodel and html document. It allows to constantly monitor objects state, reacts for their changes and informs viewmodel about those changes. Provided by Angular binding engine
-Strategy - on client side, strategy is used to choose which type of user auctions should be loaded from database - buttongroup with several button are responsible for choosing correct state, and this state is then factored by QueryFactory into specific request, and then handled in Application library QueryHandler
+1. Factory 
+  - Query Factory in Internal.Contracts
+2. Builder 
+  - ModelBuilder (via EF Core) - responsible for creating POCO models from DbContext
+3. Singleton 
+  - Infrastructure/IUserService - singleton implementation is provided by AspNetCore.DependencyInjection - registered service with singleton lifetime scope
+4. Facade 
+  - In Web/ClientApp/Autenthication module - AuthenticationService is used to aggregate functions related to authentication and autorization functions in Angluar App
+5. Command 
+  - In Web/ClientApp on client side and Application library on server side - commands are used to transport data via Mediator bus to their handlers, which then performs logic operations on them
+6. Mediator 
+  - Command and Query Bus are structured into mediator pattern. All operations are only sent to bus, and then mediator choose which handler should be used for specific operation
+7. Observer 
+  - on client side, observer pattern is used to two-way data binding in typescript viewmodel and html document. It allows to constantly monitor objects state, reacts for their changes and informs viewmodel about those changes. Provided by Angular binding engine
+8. Strategy 
+  - on client side, strategy is used to choose which type of user auctions should be loaded from database - buttongroup with several button are responsible for choosing correct state, and this state is then factored by QueryFactory into specific request, and then handled in Application library QueryHandler
 
 Architectural Patterns & SOLID Implementations
-MVC - standart AspNetCore engine used to map routes to specific views and data
-MVVM - on client side - helps to manage data on viewmodels working under the view
+1. MVC 
+  - standart AspNetCore engine used to map routes to specific views and data
+2. MVVM 
+  - on client side - helps to manage data on viewmodels working under the view
 
-CQRS - Command Query Responsibility Separation - this is one of the best ways to implement Single Responsibility Pattern. Every user request is wrapped into command or query, and every command and query has their own handler.
-Dependency Injection - used standard AspNetCore dependency injection library. With this, loosely coupled architecture is provided. It helps to care about Inversion of Control and manage dependencies all across the project.
+3. CQRS 
+  - Command Query Responsibility Separation - this is one of the best ways to implement Single Responsibility Pattern. Every user request is wrapped into command or query, and every command and query has their own handler.
+4. 
+  - Dependency Injection - used standard AspNetCore dependency injection library. With this, loosely coupled architecture is provided. It helps to care about Inversion of Control and manage dependencies all across the project.
 
 
