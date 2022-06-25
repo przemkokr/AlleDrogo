@@ -1,5 +1,7 @@
 # AlleDrogo
 This is Auction Portal Project designed and implemented during sixth semester of WSB college.
+Web application is hosted on Azure: https://alledrogoweb-pz.azurewebsites.net/
+
 Contributors:
 1. Przemysław Król 11332
 2. Bartłomiej Baca 11325
